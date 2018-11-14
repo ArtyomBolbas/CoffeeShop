@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<head>
+<meta charset="UTF-8"></meta>
+	<title>Главная</title>
+	<link rel="stylesheet" href="css/index.css"></link>
+</head>
+
+<body>
+	<main>
+		<fieldset>
+			<legend>
+				<span id="coffeeShop">Coffee shop</span>
+			</legend>
+			<div id="top">
+				<div id="top_left"></div>
+				<div id="top_right">
+					<label for="orders">Кол-во заказов:</label> <input type="text"
+						name="orders" placeholder="0" id="orders" disabled="disabled"></input>
+				</div>
+			</div>
+			<div id="bottom">
+				<a href="#{appUrlStore.orderUrl}" title="Заказать кофе">
+					<div id="bottom_left">
+						<span class="button">Заказать</span>
+					</div>
+				</a> <a href="#{appUrlStore.orderEditUrl}"
+					title="Редактировать заказ">
+					<div id="bottom_right">
+						<span class="button">Редактировать</span>
+					</div>
+				</a>
+			</div>
+		</fieldset>
+	</main>
+</body>
+
+</html>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<head>
+<meta charset="UTF-8"></meta>
+<title>Заказ</title>
+<link rel="stylesheet" href="css/order.css"></link>
+</head>
+
+<body>
+	<main>
+	<form action="" method="post">
+		<fieldset id="fieldset_main">
+			<legend>
+				<span id="coffeeShop">Coffee shop</span>
+			</legend>
+			<div id="top">
+				<div id="top_left"></div>
+				<div id="top_right">
+					<label>Кол-во заказов:<input type="number" name="orders"
+						placeholder="0" id="orders" disabled="disabled"></input>
+					</label>
+				</div>
+			</div>
+			<div id="bottom">
+				<label for="coffee">Выберети сорт кофе: <select
+					name="coffee">
+						<option value="Arabica" selected="selected">Coffee
+							Arabica (10$)</option>
+						<option value="Canephora">Coffee Canephora (10$)</option>
+						<option value="Liberica">Coffee Liberica (10$)</option>
+				</select>
+				</label> <br></br> <br></br>
+				<fieldset>
+					<legend>
+						<span id="coffeeShop">ВНИМАНИЕ</span>
+					</legend>
+					<label for="radio">Вы можете заказать доставку (+5$ к
+						стоимости заказа): <input type="radio" name="delivery"
+						value="delivery"></input> Доставка
+					</label>
+				</fieldset>
+				<br></br> <label> Количество (в граммах): <input type="text"
+					name="quantity" placeholder="не менее 100гр"></input></label> <br></br> <br></br>
+				<label> Дата: <input type="date" name="date"></input></label> <br></br>
+				<br></br> <label> Время доставки С: <input type="time"
+					name="timeFrom"></input>
+				</label> <label> По: <input type="time" name="timeBy"></input></label> <br></br>
+				<br></br> <label>Стоимость заказа: <input type="number"
+					name="cost" placeholder="0" id="cost" disabled="disabled"></input></label>
+				<br></br> <br></br> <input type="submit" value="Оформить"></input>
+			</div>
+		</fieldset>
+	</form>
+	</main>
+</body>
+</html>
