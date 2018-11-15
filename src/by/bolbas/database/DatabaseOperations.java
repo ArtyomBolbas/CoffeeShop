@@ -48,6 +48,41 @@ public class DatabaseOperations {
 		return 0L;
 	}
 	
+	
+	@SuppressWarnings("unchecked")
+	public List<CoffeeOrder> retrieveCoffeeOrder() {		
+		CoffeeOrder coffeeOrdersObj;
+		List<CoffeeOrder> allCoffeeOrders = new ArrayList<CoffeeOrder>();
+		try {
+			transObj = sessionObj.beginTransaction();
+			Query queryObj = sessionObj.createQuery("from CoffeeOrder");
+			allCoffeeOrders = queryObj.list();
+			for(CoffeeOrder coffeeOrder : allCoffeeOrders) {
+				coffeeOrdersObj = new CoffeeOrder(); 	
+				coffeeOrdersObj.setId(coffeeOrder.getId());
+				coffeeOrdersObj.setCoffeeType(coffeeOrder.getCoffeeType());
+				coffeeOrdersObj.setDeliveryType(coffeeOrder.getDeliveryType());
+				coffeeOrdersObj.setEndTime(coffeeOrder.getEndTime());
+				coffeeOrdersObj.setOrderDate(coffeeOrder.getOrderDate());
+				coffeeOrdersObj.setStartTime(coffeeOrder.getStartTime());
+				coffeeOrdersObj.setTotalCost(coffeeOrder.getTotalCost());
+				coffeeOrdersObj.setWeight(coffeeOrder.getWeight());						
+				allCoffeeOrders.add(coffeeOrdersObj);  
+			}			
+			System.out.println("All The CoffeeOrders Records Are Fetched Successfully From Database");
+
+			// XHTML Response Text
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("findCoffeeOrderById", "true");
+		} catch(Exception exceptionObj) {
+			exceptionObj.printStackTrace();
+		} finally {
+			transObj.commit();
+		}
+		return allCoffeeOrders;
+	}
+	
+
+	/*
 	// Method To Fetch Particular CoffeeOrder Details From The Database
 	public List<CoffeeOrder> getOrderById(int orderId) {	
 		CoffeeOrder particularOrdObj = new CoffeeOrder();
@@ -68,7 +103,7 @@ public class DatabaseOperations {
 		}
 		return particularOrderList;
 	}
-	
+	*/
 	/*// Method To Delete A Particular Student Record From The Database
 	public void deleteStudentInDb(int delStudentId) {
 		try {
