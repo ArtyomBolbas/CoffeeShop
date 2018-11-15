@@ -40,17 +40,17 @@
    					</h:selectOneMenu>
 				</label>				
 				<br></br> <br></br>
-				<fieldset>
-					<legend>
+				 <fieldset>
+					 <legend>
 						<span id="coffeeShop">ВНИМАНИЕ</span>
 					</legend>
 					<label>Вы можете заказать доставку (+5$ к стоимости заказа): 
 						<h:selectOneRadio value="#{coffeeOrder.deliveryType}">
    							<f:selectItem itemValue="WithoutDelivery" itemLabel="Без доставки" selected="selected"/>
    							<f:selectItem itemValue="Delivery" itemLabel="С доставкой" />
-						</h:selectOneRadio>
+						</h:selectOneRadio> 
 					</label>
-				</fieldset>
+			 	</fieldset> 
 				<br></br> 
 				<label> Количество (в граммах): 
 				 	<h:inputText id="weight" value="#{coffeeOrder.weight}" validatorMessage="Вес должен быть от 100 до 5000 грамм" >
@@ -78,17 +78,16 @@
    						<f:attribute name="startDateComponent" value="#{startDateComponent}" />
 					</h:inputText>
 				</label> 
-				<h:message for="startTime" style="color:red" />
-				<h:message for="endTime" style="color:red" />
+					<h:message for="startTime" style="color:red" />
+					<h:message for="endTime" style="color:red" />
 				<br></br>
 				<br></br> 
 				<label>Стоимость заказа: 
-<!-- 				<input type="number" name="cost" placeholder="0" id="cost" disabled="disabled"></input>
- -->				<h:outputText value="#{coffeeOrder.totalCost}" disabled="disabled" placeholder="0"></h:outputText>
+ 					<h:outputText value="#{coffeeOrder.totalCost}" disabled="disabled" placeholder="0"></h:outputText>
 				</label>
+				<label>$</label>
 				<br></br> <br></br> 
-				 <h:commandButton value="Оформить заказ" action="#{databaseOperations.addOrder(coffeeOrder)}" /> 
-				<!-- <input type="submit" value="Оформить"></input> -->
+					 <h:commandButton value="Оформить заказ" action="#{databaseOperations.addOrder(coffeeOrder)}" /> 
 			</div>
 		</fieldset>
 	</h:form>

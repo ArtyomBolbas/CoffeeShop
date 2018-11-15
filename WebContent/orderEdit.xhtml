@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<head>
+<meta charset="UTF-8"></meta>
+<title>Список заказов</title>
+<link rel="stylesheet" href="css/orderEdit.css"></link>
+</head>
+
+<body>
+	<main> <h:form>
+		<fieldset id="fieldset_main">
+			<legend>
+				<span id="coffeeShop">Coffee shop</span>
+			</legend>
+			<div id="top">
+				<div id="top_left"></div>
+				<div id="top_right">
+					<label>Кол-во заказов: <h:outputText
+							value="#{databaseOperations.orderCount}" disabled="disabled"
+							placeholder="0"></h:outputText>
+					</label>
+				</div>
+			</div>
+			<div id="bottom">
+				<h3> Find CoffeeOrder Record</h3>
+				<h:form>
+					<h:panelGrid columns="2">
+					
+						<div class="form-group">
+							<h:outputLabel value="Id:" />
+							<div class="col-xs-10">
+								<h:inputText value="#{coffeeOrder.id}" styleClass="form-control" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<div class="col-xs-offset-2 col-xs-10">
+								<h:commandButton value="Show CoffeeOrder" action="#{coffeeOrder.id}" />
+							</div>
+						</div>
+						
+						<h:dataTable 
+							rendered="#{not empty findCoffeeOrderById}" value="#{databaseOperations.getOrderById()}" var="studList" headerClass="stud-table-header">
+							<h:column>
+								<f:facet name="header">Id</f:facet>
+								<h:outputText value="#{coffeeOrder.id}" styleClass="stud-table-row" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Кол-во</f:facet>
+								<h:outputText value="#{coffeeOrder.weight}" styleClass="stud-table-row" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Кофе</f:facet>
+								<h:outputText value="#{coffeeOrder.coffeeType}" styleClass="stud-table-row" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Время ( С )</f:facet>
+								<h:outputText value="#{coffeeOrder.startTime}" styleClass="stud-table-row" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Время ( По )</f:facet>
+								<h:outputText value="#{coffeeOrder.endTime}" styleClass="stud-table-row" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Дата</f:facet>
+								<h:outputText value="#{coffeeOrder.orderDate}" styleClass="stud-table-row" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Способ получения</f:facet>
+								<h:outputText value="#{coffeeOrder.deliveryType}" styleClass="stud-table-row" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Сумма</f:facet>
+								<h:outputText value="#{coffeeOrder.totalCost}" styleClass="stud-table-row" />
+							</h:column>
+							<h:column>
+								<h:commandButton value="edit" action="#{appUrlStore.orderUrl}" />
+							</h:column>
+							<!-- <h:column>
+								<h:commandButton value="delete" action="#{simpleCrudBean.delete(item)}" />
+							</h:column> -->
+						</h:dataTable>
+					</h:panelGrid>
+				</h:form>
+			</div>
+		</fieldset>
+	</h:form> </main>
+</body>
+</html>

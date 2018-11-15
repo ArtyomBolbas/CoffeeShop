@@ -1,0 +1,39 @@
+main {
+	width: 100%;
+	margin-top: 5%;
+}
+
+#top {
+	height: 240px;
+}
+
+#fieldset_main {
+	height: 600px;
+	width: 600px;
+	margin: auto;
+	border-radius: 5px;
+}
+
+#coffeeShop {
+	font-size: 26px;
+}
+
+#top_left {
+	background-image: url("../image/coffeeShop.jpg");
+	background-repeat: no-repeat;
+	float: left;
+	height: 220px;
+	width: 250px;
+}
+
+#top_right {
+	position: relative;
+	margin-left: 260px;
+	height: 220;
+}
+
+#bottom {
+	position: relative;
+	top: 0px;
+	left: 0px;
+}

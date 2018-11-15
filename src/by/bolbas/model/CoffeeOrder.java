@@ -2,8 +2,10 @@ package by.bolbas.model;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.event.ValueChangeEvent;
@@ -26,9 +28,9 @@ public class CoffeeOrder implements java.io.Serializable {
 	private Map<String, Integer> coffeeCostMap = new HashMap<>();
 
 	{
-		coffeeCostMap.put("Arabica", 10);
-		coffeeCostMap.put("Canephora", 15);
-		coffeeCostMap.put("Liberica", 20);
+		coffeeCostMap.put("Coffee Arabica (10$)", 10);
+		coffeeCostMap.put("Coffee Canephora (15$)", 15);
+		coffeeCostMap.put("Coffee Liberica (20$)", 20);
 	}
 
 	public void coffeeTypeChanged(ValueChangeEvent e) {

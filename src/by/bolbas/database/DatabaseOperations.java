@@ -1,6 +1,7 @@
 package by.bolbas.database;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.faces.bean.ApplicationScoped;
@@ -10,8 +11,6 @@ import javax.faces.context.FacesContext;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.criterion.Projections;
-
 import by.bolbas.model.CoffeeOrder;
 import by.bolbas.util.HibernateUtil;
 
@@ -47,6 +46,27 @@ public class DatabaseOperations {
 			transObj.commit();
 		}
 		return 0L;
+	}
+	
+	// Method To Fetch Particular CoffeeOrder Details From The Database
+	public List<CoffeeOrder> getOrderById(int orderId) {	
+		CoffeeOrder particularOrdObj = new CoffeeOrder();
+		List<CoffeeOrder> particularOrderList = new ArrayList<CoffeeOrder>();            
+		try {
+			transObj = sessionObj.beginTransaction();
+			Query queryObj = sessionObj.createQuery("from CoffeeOrder where id= :order_id").setInteger("order_id", orderId);			
+			particularOrdObj = (CoffeeOrder)queryObj.uniqueResult();
+			particularOrderList = queryObj.list();			
+			System.out.println("CoffeeOrder Record With Id: " + orderId + " Is Fetched Successfully From Database");
+
+			// XHTML Response Text
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("findCoffeeOrderById",  orderId);
+		} catch(Exception exceptionObj) {
+			exceptionObj.printStackTrace();
+		} finally {
+			transObj.commit();
+		}
+		return particularOrderList;
 	}
 	
 	/*// Method To Delete A Particular Student Record From The Database
