@@ -1,35 +1,39 @@
 main {
-    width: 100%;
+	width: 100%;
+	margin-top: 5%;
+}
+
+#top {
+	height: 240px;
 }
 
 #fieldset_main {
-    height: 600px;
-    width: 600px;
-    margin-top: 5%;
-    margin-left: 15%;
-    border-radius: 5px;
+	height: 600px;
+	width: 600px;
+	margin: auto;
+	border-radius: 5px;
 }
 
 #coffeeShop {
-    font-size: 26px;
+	font-size: 26px;
 }
 
 #top_left {
-    background-image: url("image/coffeeShop.jpg");
-    background-repeat: no-repeat;
-    float: left;
-    height: 250px;
-    width: 302px;
+	background-image: url("../image/coffeeShop.jpg");
+	background-repeat: no-repeat;
+	float: left;
+	height: 220px;
+	width: 250px;
 }
 
 #top_right {
-    position: relative;
-    margin-left: 302px;
+	position: relative;
+	margin-left: 260px;
+	height: 220;
 }
 
 #bottom {
-    position: absolute;
-    top: 330px;
-    left: 200px;
+	position: relative;
+	top: 0px;
+	left: 0px;
 }
-

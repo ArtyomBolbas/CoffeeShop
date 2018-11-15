@@ -20,8 +20,8 @@
 			<div id="top">
 				<div id="top_left"></div>
 				<div id="top_right">
-					<label for="orders">Кол-во заказов:</label> <input type="text"
-						name="orders" placeholder="0" id="orders" disabled="disabled"></input>
+					<label for="orders">Кол-во заказов:</label> 
+					<h:outputText value="#{databaseOperations.orderCount}" disabled="disabled" placeholder="0"></h:outputText>
 				</div>
 			</div>
 			<div id="bottom">

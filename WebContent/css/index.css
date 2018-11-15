@@ -1,12 +1,12 @@
 main {
+    margin-top: 10%;
     width: 100%;
 }
 
 fieldset {
     height: 400px;
     width: 600px;
-    margin-top: 10%;
-    margin-left: 15%;
+    margin: auto;
     border-radius: 5px;
 }
 
@@ -32,7 +32,6 @@ fieldset {
 }
 
 #bottom {
-    /*    background-color: #d8ff00;*/
     position: relative;
     top: 290px;
     left: 0px;

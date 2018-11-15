@@ -9,7 +9,7 @@ DROP TABLE IF EXISTS coffeeOrder;
 
 /* SQL Command To Create The Table In A Database */
 CREATE TABLE coffeeOrder (
-	id int NOT NULL,
+	id int NOT NULL AUTO_INCREMENT,
 	coffee_type VARCHAR(100) NOT NULL,
 	delivery_type VARCHAR(100) NOT NULL,
 	weight int NOT NULL,

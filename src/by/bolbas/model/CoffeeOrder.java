@@ -1,8 +1,15 @@
 package by.bolbas.model;
 
-import java.sql.Time;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
+import javax.faces.event.ValueChangeEvent;
+
+@ManagedBean
+@RequestScoped
 public class CoffeeOrder implements java.io.Serializable {
 
 	private static final long serialVersionUID = -1540437138823134510L;
@@ -12,9 +19,21 @@ public class CoffeeOrder implements java.io.Serializable {
 	private String deliveryType;
 	private Integer weight;
 	private Date orderDate;
-	private Time startTime;
-	private Time endTime;
-	private Integer totalCost;
+	private Date startTime;
+	private Date endTime;
+	private Integer totalCost = 20;
+
+	private Map<String, Integer> coffeeCostMap = new HashMap<>();
+
+	{
+		coffeeCostMap.put("Arabica", 10);
+		coffeeCostMap.put("Canephora", 15);
+		coffeeCostMap.put("Liberica", 20);
+	}
+
+	public void coffeeTypeChanged(ValueChangeEvent e) {
+		totalCost = (Integer) e.getNewValue();
+	}
 
 	public Integer getId() {
 		return id;
@@ -56,19 +75,19 @@ public class CoffeeOrder implements java.io.Serializable {
 		this.orderDate = orderDate;
 	}
 
-	public Time getStartTime() {
+	public Date getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Time startTime) {
+	public void setStartTime(Date startTime) {
 		this.startTime = startTime;
 	}
 
-	public Time getEndTime() {
+	public Date getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Time endTime) {
+	public void setEndTime(Date endTime) {
 		this.endTime = endTime;
 	}
 
@@ -78,6 +97,10 @@ public class CoffeeOrder implements java.io.Serializable {
 
 	public void setTotalCost(Integer totalCost) {
 		this.totalCost = totalCost;
+	}
+
+	public Map<String, Integer> getCoffeeCostMap() {
+		return coffeeCostMap;
 	}
 
 	@Override
