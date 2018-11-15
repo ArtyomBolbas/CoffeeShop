@@ -82,46 +82,84 @@ public class DatabaseOperations {
 	}
 	
 
-	/*
 	// Method To Fetch Particular CoffeeOrder Details From The Database
-	public List<CoffeeOrder> getOrderById(int orderId) {	
+	public String getOrderById(int orderId) {	
 		CoffeeOrder particularOrdObj = new CoffeeOrder();
-		List<CoffeeOrder> particularOrderList = new ArrayList<CoffeeOrder>();            
 		try {
 			transObj = sessionObj.beginTransaction();
-			Query queryObj = sessionObj.createQuery("from CoffeeOrder where id= :order_id").setInteger("order_id", orderId);			
+			Query queryObj = sessionObj.createQuery("from CoffeeOrder where id= :order_id").setInteger("order_id", orderId);
+			
 			particularOrdObj = (CoffeeOrder)queryObj.uniqueResult();
-			particularOrderList = queryObj.list();			
+			
 			System.out.println("CoffeeOrder Record With Id: " + orderId + " Is Fetched Successfully From Database");
-
 			// XHTML Response Text
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("findCoffeeOrderById",  orderId);
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("editCoffeeOrder",  particularOrdObj);
 		} catch(Exception exceptionObj) {
 			exceptionObj.printStackTrace();
 		} finally {
 			transObj.commit();
 		}
-		return particularOrderList;
+		return "/orderEdit.xhtml?faces-redirect=true";
 	}
-	*/
-	/*// Method To Delete A Particular Student Record From The Database
-	public void deleteStudentInDb(int delStudentId) {
+	
+
+	// Method To Fetch Particular CoffeeOrder Details From The Database
+	public String getOrderByDeleteId(int orderId) {	
+		CoffeeOrder particularOrdObj = new CoffeeOrder();
 		try {
 			transObj = sessionObj.beginTransaction();
-			Student studId = (Student)sessionObj.load(Student.class, new Integer(delStudentId));
-			sessionObj.delete(studId);
-			System.out.println("Student Record With Id: " + delStudentId + " Is Successfully Deleted From Database");
+			Query queryObj = sessionObj.createQuery("from CoffeeOrder where id= :order_id").setInteger("order_id", orderId);
+			
+			particularOrdObj = (CoffeeOrder)queryObj.uniqueResult();
+			
+			System.out.println("CoffeeOrder Record With Id: " + orderId + " Is Fetched Successfully From Database");
+			// XHTML Response Text
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("deleteCoffeeOrder",  particularOrdObj);
+		} catch(Exception exceptionObj) {
+			exceptionObj.printStackTrace();
+		} finally {
+			transObj.commit();
+		}
+		return "/orderDelete.xhtml?faces-redirect=true";
+	}
+	
+	
+	public String updateCoffeeOrderRecord(CoffeeOrder updateCoffeeOrderObj) {
+		try {
+			transObj = sessionObj.beginTransaction();
+			sessionObj.update(updateCoffeeOrderObj);		
+			System.out.println("Student Record With Id: " + updateCoffeeOrderObj.getId() + " Is Successfully Updated In Database");	
 
 			// XHTML Response Text
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("deletedStudentId",  delStudentId);	
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("updatedCoffeeOrderRecord",  "Success");
+		} catch(Exception exceptionObj){
+			exceptionObj.printStackTrace();
+		} finally {
+			transObj.commit();
+		}
+		return "/index.xhtml?faces-redirect=true";
+	}
+	
+	// Method To Delete A Particular Student Record From The Database
+	@SuppressWarnings("deprecation")
+	public String deleteCoffeeOrderInDb(int delCoffeeOrderId) {
+		try {
+			transObj = sessionObj.beginTransaction();
+			CoffeeOrder studId = (CoffeeOrder)sessionObj.load(CoffeeOrder.class, new Integer(delCoffeeOrderId));
+			sessionObj.delete(studId);
+			System.out.println("CoffeeOrder Record With Id: " + delCoffeeOrderId + " Is Successfully Deleted From Database");
+
+			// XHTML Response Text
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("deletedCoffeeOrderId",  delCoffeeOrderId);	
 		} catch (Exception exceptionObj) {
 			exceptionObj.printStackTrace();
 		} finally {
 			transObj.commit();
 		}
+		return "/index.xhtml?faces-redirect=true";
 	}
 
-	// Method To Fetch Particular Student Details From The Database
+	/*// Method To Fetch Particular Student Details From The Database
 	public List<Student> getStudentById(int studentId) {	
 		Student particularStuDObj = new Student();
 		List<Student> particularStudentList = new ArrayList<Student>();            
@@ -140,10 +178,10 @@ public class DatabaseOperations {
 			transObj.commit();
 		}
 		return particularStudentList;
-	}
+	}*/
 
 	// Method To Update Particular Student Details In The Database	
-	public void updateStudentRecord(Student updateStudentObj) {
+	/*public void updateStudentRecord(Student updateStudentObj) {
 		try {
 			transObj = sessionObj.beginTransaction();
 			sessionObj.update(updateStudentObj);		
@@ -156,9 +194,9 @@ public class DatabaseOperations {
 		} finally {
 			transObj.commit();
 		}
-	}
+	}*/
 
-	@SuppressWarnings("unchecked")
+	/*@SuppressWarnings("unchecked")
 	public List<Student> retrieveStudent() {		
 		Student studentsObj;
 		List<Student>allStudents = new ArrayList<Student>();

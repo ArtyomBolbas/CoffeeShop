@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<head>
+<meta charset="UTF-8"></meta>
+<title>Список заказов</title>
+<link rel="stylesheet" href="css/ordersTable.css"></link>
+</head>
+
+<body>
+	<main> <h:form>
+		<fieldset id="fieldset_main">
+			<legend>
+				<span id="coffeeShop">Coffee shop</span>
+			</legend>
+			<div id="top">
+				<div id="top_left"></div>
+				<div id="top_right">
+					<label>Кол-во заказов: <h:outputText
+							value="#{databaseOperations.orderCount}" disabled="disabled"
+							placeholder="0"></h:outputText>
+					</label>
+				</div>
+			</div>
+			<div id="bottom">
+				<h:form>
+					<h:panelGrid columns="9">
+						<h:dataTable 
+							 value="#{databaseOperations.retrieveCoffeeOrder()}" var="item" headerClass="stud-table-header">
+							<h:column>
+								<f:facet name="header">Id</f:facet>
+								<h:outputText value="#{item.id}" styleClass="stud-table-row" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Кол-во</f:facet>
+								<h:outputText value="#{item.weight}" styleClass="stud-table-row" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Кофе</f:facet>
+								<h:outputText value="#{item.coffeeType}" styleClass="stud-table-row" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Время ( С )</f:facet>
+								<h:outputText value="#{item.startTime}" styleClass="stud-table-row" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Время ( По )</f:facet>
+								<h:outputText value="#{item.endTime}" styleClass="stud-table-row" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Дата</f:facet>
+								<h:outputText value="#{item.orderDate}" styleClass="stud-table-row" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Способ получения</f:facet>
+								<h:outputText value="#{item.deliveryType}" styleClass="stud-table-row" />
+							</h:column>
+							<h:column>
+								<f:facet name="header">Сумма</f:facet>
+								<h:outputText value="#{item.totalCost}" styleClass="stud-table-row" />
+							</h:column>
+							<h:column>
+								<h:commandButton value="Редактировать" action="#{databaseOperations.getOrderById(item.id)}" />
+							</h:column>
+							<h:column>
+								<h:commandButton value="Удалить" action="#{databaseOperations.getOrderByDeleteId(item.id)}" />
+							</h:column> 
+						</h:dataTable>
+					</h:panelGrid>
+				</h:form>
+			</div>
+		</fieldset>
+	</h:form> </main>
+</body>
+</html>

@@ -15,11 +15,15 @@ public class AppUrlStore implements Serializable {
 
 	private String baseUrl = null;
 	private String orderUrl = null;
+	private String ordersTableUrl = null;
 	private String orderEditUrl = null;
+	private String orderDeleteUrl = null;
 
 	public String getBaseUrl() {return baseUrl; }
 	public String getOrderUrl() { return orderUrl; }
+	public String getOrdersTableUrl() {return ordersTableUrl; }
 	public String getOrderEditUrl() {return orderEditUrl; }
+	public String getOrderDeleteUrl() {return orderDeleteUrl; }
 
 	@PostConstruct
     public void init() {
@@ -28,6 +32,8 @@ public class AppUrlStore implements Serializable {
 
 		this.baseUrl = baseUrl;
 		this.orderUrl = baseUrl + "order.xhtml";
+		this.ordersTableUrl = baseUrl + "ordersTable.xhtml";
 		this.orderEditUrl = baseUrl + "orderEdit.xhtml";
+		this.orderDeleteUrl = baseUrl + "orderDelete.xhtml";
     }
 }

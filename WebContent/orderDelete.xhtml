@@ -34,9 +34,9 @@
    						<f:selectItem itemValue="Canephora" itemLabel="Coffee Canephora (10$)" />
    						<f:selectItem itemValue="Liberica" itemLabel="Coffee Liberica (10$)" />
 					</h:selectOneMenu> -->
-					<h:selectOneMenu value="#{editCoffeeOrder.totalCost}" onchange="submit()"
-						valueChangeListener="#{editCoffeeOrder.coffeeTypeChanged}">
-   						<f:selectItems value="#{editCoffeeOrder.coffeeCostMap}" />
+					<h:selectOneMenu value="#{deleteCoffeeOrder.totalCost}" onchange="submit()"
+						valueChangeListener="#{deleteCoffeeOrder.coffeeTypeChanged}">
+   						<f:selectItems value="#{deleteCoffeeOrder.coffeeCostMap}" />
    					</h:selectOneMenu>
 				</label>				
 				<br></br> <br></br>
@@ -45,7 +45,7 @@
 						<span id="coffeeShop">ВНИМАНИЕ</span>
 					</legend>
 					<label>Вы можете заказать доставку (+5$ к стоимости заказа): 
-						<h:selectOneRadio value="#{editCoffeeOrder.deliveryType}">
+						<h:selectOneRadio value="#{deleteCoffeeOrder.deliveryType}">
    							<f:selectItem itemValue="WithoutDelivery" itemLabel="Без доставки" selected="selected"/>
    							<f:selectItem itemValue="Delivery" itemLabel="С доставкой" />
 						</h:selectOneRadio> 
@@ -53,26 +53,26 @@
 			 	</fieldset> 
 				<br></br> 
 				<label> Количество (в граммах): 
-				 	<h:inputText id="weight" value="#{editCoffeeOrder.weight}" validatorMessage="Вес должен быть от 100 до 5000 грамм" >
+				 	<h:inputText id="weight" value="#{deleteCoffeeOrder.weight}" validatorMessage="Вес должен быть от 100 до 5000 грамм" >
 			       		 <f:validateLongRange maximum="5000" minimum="100" />
 					</h:inputText> 
 					<h:message for="weight" style="color:red" />
 				</label> 
 				<br></br> <br></br>
 				<label> Дата: 
-					<h:inputText id="orderDate" value="#{editCoffeeOrder.orderDate}" converter="orderDateConverter" converterMessage="Некорректно задана дата">
+					<h:inputText id="orderDate" value="#{deleteCoffeeOrder.orderDate}" converter="orderDateConverter" converterMessage="Некорректно задана дата">
 			       		<!--  <f:validateLongRange maximum="5000" minimum="100" /> -->
 					</h:inputText> 
 					<h:message for="orderDate" style="color:red" />
 				</label> 
 				<br></br><br></br> 
 				<label> Время доставки С: 
-					<h:inputText id="startTime" binding="#{startDateComponent}" value="#{editCoffeeOrder.startTime}" converterMessage="Некорректно задано время">
+					<h:inputText id="startTime" binding="#{startDateComponent}" value="#{deleteCoffeeOrder.startTime}" converterMessage="Некорректно задано время">
 			    	   <f:convertDateTime type="time" pattern="HH:mm"/>
 					</h:inputText>
 				</label> 
 				<label> По: 
-					<h:inputText id="endTime" value="#{editCoffeeOrder.endTime}" converterMessage="Некорректно задано время">
+					<h:inputText id="endTime" value="#{deleteCoffeeOrder.endTime}" converterMessage="Некорректно задано время">
 			       		<f:convertDateTime type="time" pattern="HH:mm"/>
 				       	<f:validator validatorId="orderTimeRangeValidator" />
    						<f:attribute name="startDateComponent" value="#{startDateComponent}" />
@@ -83,14 +83,14 @@
 				<br></br>
 				<br></br> 
 				<label>Стоимость заказа: 
- 					<h:outputText value="#{editCoffeeOrder.totalCost}" disabled="disabled" placeholder="0"></h:outputText>
+ 					<h:outputText value="#{deleteCoffeeOrder.totalCost}" disabled="disabled" placeholder="0"></h:outputText>
 				</label>
 				<label>$</label>
 				<br></br> <br></br> 
-					 <h:commandButton value="Обновить заказ" action="#{databaseOperations.updateCoffeeOrderRecord(editCoffeeOrder)}" /> 
+					 <h:commandButton value="Удалить" action="#{databaseOperations.deleteCoffeeOrderInDb(deleteCoffeeOrder.)}" /> 
 			</div>
 		</fieldset>
-	</h:form>
+	</h:form>				
 	</main>
 </body>
 </html>
