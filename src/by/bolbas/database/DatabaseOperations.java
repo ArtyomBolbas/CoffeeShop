@@ -25,10 +25,10 @@ public class DatabaseOperations {
 		try {
 			transObj = sessionObj.beginTransaction();
 			sessionObj.save(order);
-		/*	System.out.println("Student Record With Id: " + order.getId() + " Is Successfully Created In Database");*/
+			System.out.println("CoffeeOrder Record With Id: " + order.getId() + " Is Successfully Created In Database");
 
 			// XHTML Response Text
-			/*FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("createdStudentId",  order.getId());		*/				
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("createdStudentId",  order.getId());					
 		} catch (Exception exceptionObj) {
 			exceptionObj.printStackTrace();
 		} finally {

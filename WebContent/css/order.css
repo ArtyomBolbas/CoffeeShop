@@ -19,8 +19,6 @@ main {
 }
 
 #top_left {
-	background-image: url("../image/coffeeShop.jpg");
-	background-repeat: no-repeat;
 	float: left;
 	height: 220px;
 	width: 250px;

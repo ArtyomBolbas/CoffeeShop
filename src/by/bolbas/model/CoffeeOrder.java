@@ -24,6 +24,9 @@ public class CoffeeOrder implements java.io.Serializable {
 	private Date startTime;
 	private Date endTime;
 	private Integer totalCost = 20;
+	
+	Integer temp1 = 0;
+	Integer temp2 = 0;
 
 	private Map<String, Integer> coffeeCostMap = new HashMap<>();
 
@@ -34,6 +37,17 @@ public class CoffeeOrder implements java.io.Serializable {
 	}
 
 	public void coffeeTypeChanged(ValueChangeEvent e) {
+		totalCost = (Integer) e.getNewValue();
+	}
+	
+	private Map<String, Integer> coffeeDeliveryMap = new HashMap<>();
+	
+	{
+		coffeeDeliveryMap.put("Без доставки", 0); 
+		coffeeDeliveryMap.put("С доставкой", 5);
+	}
+	
+	public void coffeeDeliverChanged(ValueChangeEvent e) {
 		totalCost = (Integer) e.getNewValue();
 	}
 
@@ -105,6 +119,11 @@ public class CoffeeOrder implements java.io.Serializable {
 		return coffeeCostMap;
 	}
 
+	public Map<String, Integer> getCoffeeDeliveryMap() {
+		return coffeeDeliveryMap;
+	}
+
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

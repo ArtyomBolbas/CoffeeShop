@@ -19,8 +19,6 @@ fieldset {
 }
 
 #top_left {
-    background-image: url("../image/coffeeShop.jpg");
-    background-repeat: no-repeat;
     float: left;
     height: 250px;
     width: 302px;
