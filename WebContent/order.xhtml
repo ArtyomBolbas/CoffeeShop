@@ -6,13 +6,13 @@
 	xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
 
-<head>
+<h:head>
 <meta charset="UTF-8"></meta>
 <title>Заказ</title>
 <link rel="stylesheet" href="css/order.css"></link>
-</head>
+</h:head>
 
-<body>
+<h:body>
 	<main>
 	<h:form>
 		<fieldset id="fieldset_main">
@@ -34,10 +34,17 @@
    						<f:selectItem itemValue="Canephora" itemLabel="Coffee Canephora (10$)" />
    						<f:selectItem itemValue="Liberica" itemLabel="Coffee Liberica (10$)" />
 					</h:selectOneMenu> -->
-					<h:selectOneMenu value="#{coffeeOrder.totalCost}" onchange="submit()" valueChangeListener="#{coffeeOrder.coffeeTypeChanged}">
+					
+				<!-- 	<h:selectOneMenu value="#{coffeeOrder.coffeeType}" onchange="submit()" 
+					valueChangeListener="#{coffeeOrder.coffeeTypeChanged}">
  					
    						<f:selectItems value="#{coffeeOrder.coffeeCostMap}" />
-   					</h:selectOneMenu>
+   					</h:selectOneMenu> -->
+   					
+   					<h:selectOneMenu value="#{coffeeOrder.coffeeType}">
+    					<f:selectItems value="#{coffeeOrder.coffeeTypeMap}"/>
+   					<!-- 	<f:ajax listener="#{coffeeOrder.coffeeTypeChanged}" /> -->
+					</h:selectOneMenu>   
 				</label>				
 				<br></br> <br></br>
 				 <fieldset>
@@ -46,11 +53,16 @@
 					</legend>
 					<label>Вы можете заказать доставку (+5$ к стоимости заказа): 
 						<h:selectOneRadio value="#{coffeeOrder.totalCost}" onchange="submit()" valueChangeListener="#{coffeeOrder.coffeeDeliverChanged}">
-						 	<!-- 	<f:selectItem itemValue="Без доставки" itemLabel="Без доставки" selected="selected"/>
+						<!--  		<f:selectItem itemValue="Без доставки" itemLabel="Без доставки" selected="selected"/>
    							<f:selectItem itemValue="С доставкой" itemLabel="С доставкой" /> -->
    							
    							<f:selectItems value="#{coffeeOrder.coffeeDeliveryMap}" />
-						</h:selectOneRadio> 
+						</h:selectOneRadio>  
+			<!-- 		 	<h:selectOneRadio value="#{coffeeOrder.deliveryType}">
+							<f:selectItem itemValue="Без доставки" itemLabel="Без доставки" />
+   							<f:selectItem itemValue="С доставкой" itemLabel="С доставкой" />
+   						</h:selectOneRadio>   -->
+   							
 					</label>
 			 	</fieldset> 
 				<br></br> 
@@ -63,7 +75,7 @@
 				<br></br> <br></br>
 				<label> Дата: 
 					<h:inputText id="orderDate" value="#{coffeeOrder.orderDate}" converter="orderDateConverter" converterMessage="Некорректно задана дата">
-			       		  <f:validateLongRange maximum="5000" minimum="100" /> 
+			       		 <!--  <f:validateLongRange maximum="5000" minimum="100" />  -->
 					</h:inputText> 
 					<h:message for="orderDate" style="color:red" />
 				</label> 
@@ -94,5 +106,5 @@
 		</fieldset>
 	</h:form>
 	</main>
-</body>
+</h:body>
 </html>

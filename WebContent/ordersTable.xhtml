@@ -32,10 +32,10 @@
 					<h:panelGrid columns="9">
 						<h:dataTable 
 							 value="#{databaseOperations.retrieveCoffeeOrder()}" var="item" headerClass="stud-table-header">
-						<!-- 	<h:column>
+						 	<h:column>
 								<f:facet name="header">Id</f:facet>
 								<h:outputText value="#{item.id}" styleClass="stud-table-row" />
-							</h:column> -->
+							</h:column> 
 							<h:column>
 								<f:facet name="header">Кол-во (гр)</f:facet>
 								<h:outputText value="#{item.weight}" styleClass="stud-table-row" />

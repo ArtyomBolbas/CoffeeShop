@@ -8,11 +8,29 @@ import javax.faces.convert.FacesConverter;
 
 @FacesConverter("orderDateConverter")
 public class OrderDateConverter extends DateTimeConverter{
+	/*
+	 * Класс OrderDateConverter отвечает за формат даты, введенной пользователем.
+	 * В случае неверного ввода "выбрасывает" предупреждение
+	 */
 
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/*
+	 * Поля, свойства необходииые OrderDateConverter 
+	 */
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/*
+	 * Конструктор класса OrderDateConverter
+	 */
     public OrderDateConverter() {
         setPattern("MM/dd/yyyy");
     }
 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/*
+	 * Метод отвечает за ... ДОПИСАТЬ!!!
+	 */
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {
         if (value != null && value.length() != getPattern().length()) {

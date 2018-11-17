@@ -11,6 +11,15 @@ import javax.faces.context.FacesContext;
 @ManagedBean
 @ApplicationScoped
 public class AppUrlStore implements Serializable {
+	/*
+	 * Класс AppUrlStore. Отвечает за ......ДОПИСАТЬ!!!!!
+	 */
+
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	/*
+	 * Поля, свойства необходииые AppUrlStore 
+	 */
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private static final long serialVersionUID = 1L;
 
 	private String baseUrl = null;
@@ -24,7 +33,12 @@ public class AppUrlStore implements Serializable {
 	public String getOrdersTableUrl() {return ordersTableUrl; }
 	public String getOrderEditUrl() {return orderEditUrl; }
 	public String getOrderDeleteUrl() {return orderDeleteUrl; }
-
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	/*
+	 * 	......ДОПИСАТЬ!!!!!
+	 */
 	@PostConstruct
     public void init() {
 		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
