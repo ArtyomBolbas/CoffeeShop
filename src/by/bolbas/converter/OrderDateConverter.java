@@ -29,7 +29,7 @@ public class OrderDateConverter extends DateTimeConverter{
 
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/*
-	 * Метод отвечает за ... ДОПИСАТЬ!!!
+	 * Метод отвечает за корректность даты (длина, на Null) 
 	 */
     @Override
     public Object getAsObject(FacesContext context, UIComponent component, String value) {

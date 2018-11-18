@@ -12,7 +12,7 @@ import javax.faces.context.FacesContext;
 @ApplicationScoped
 public class AppUrlStore implements Serializable {
 	/*
-	 * Класс AppUrlStore. Отвечает за ......ДОПИСАТЬ!!!!!
+	 * Класс AppUrlStore. Отвечает за хранение адресов страниц!!!!!
 	 */
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -37,7 +37,7 @@ public class AppUrlStore implements Serializable {
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	/*
-	 * 	......ДОПИСАТЬ!!!!!
+	 * 	Метод вызывается после создания объекта, служит для инициализации.
 	 */
 	@PostConstruct
     public void init() {

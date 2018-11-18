@@ -24,6 +24,7 @@
 					<h:outputText value="#{databaseOperations.orderCount}" disabled="disabled" placeholder="0"></h:outputText>
 				</div>
 			</div>
+ 			<h:outputText rendered="#{not empty createdCoffeeOrderMessage}" value="#{createdCoffeeOrderMessage}" styleClass="successText" />			
 			<div id="bottom">
 				<a href="#{appUrlStore.orderUrl}" title="Заказать кофе">
 					<div id="bottom_left">

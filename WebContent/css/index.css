@@ -63,3 +63,9 @@ fieldset {
     font-size: 22px;
     color: black;
 }
+
+.successText {
+	padding-left: 22px;
+	font-weight: bold;
+	color: green;
+}

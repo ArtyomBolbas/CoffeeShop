@@ -1,18 +1,20 @@
 package by.bolbas.model;
 
 import java.util.Date;
+
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.faces.event.AjaxBehaviorEvent;
 import javax.faces.event.ValueChangeEvent;
 
+
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class CoffeeOrder implements java.io.Serializable {
 	/*
 	 * Класс CoffeeOrder. Отвечает за создание новой сущности "CoffeeOrder".
@@ -26,64 +28,62 @@ public class CoffeeOrder implements java.io.Serializable {
 	private static final long serialVersionUID = -1540437138823134510L;
 
 	private Integer id;
-	private String coffeeType;
+	private String coffeeType = "Arabica";
 	private String deliveryType;
 	private Integer weight;
 	private Date orderDate;
 	private Date startTime;
 	private Date endTime;
-	private Integer totalCost = 20;
+	private Integer totalCost = 10;
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	/*
 	 *  ........ДОПИСАТЬ!!!!!!!!
 	 */
-	/*private Map<String, String> coffeeCostMap = new HashMap<>();
-
-	{
-		coffeeCostMap.put("Coffee Arabica (10$)", "10");
-		coffeeCostMap.put("Coffee Canephora (15$)", "15");
-		coffeeCostMap.put("Coffee Liberica (20$)", "20");
-	}
-
-	public void coffeeTypeChanged(ValueChangeEvent e) {
-		totalCost = (Integer) e.getNewValue();
-	}*/
-	
-	
 	private Map<String, String> coffeeTypeMap = new HashMap<>();
-
-	{
-		coffeeTypeMap.put("Coffee Arabica (10$)", "Arabica");
+  	{
+  		coffeeTypeMap.put("Coffee Arabica (10$)", "Arabica");
 		coffeeTypeMap.put("Coffee Canephora (15$)", "Canephora");
 		coffeeTypeMap.put("Coffee Liberica (20$)", "Liberica");
-	}
-
-	public void cofeeTypeChanged(AjaxBehaviorEvent event) {
-	    // Тут любой нужный код
-		// Например
-		switch (coffeeType) {
-			case "Arabica": totalCost += 10;
-			case "Canephora": totalCost += 15;
-			case "Liberica": totalCost += 20;
-			// и т.д. логику написать
-		}
+ 	}
+ 
+	public void coffeeTypeChanged() {
+		totalCost = getCoffeeCost();
 	}
 	
-	
-	
-	private Map<String, Integer> coffeeDeliveryMap = new HashMap<>();
+	private Map<String, String> coffeeDeliveryMap = new HashMap<>();
 	
 	{
-		coffeeDeliveryMap.put("Без доставки", 0); 
-		coffeeDeliveryMap.put("С доставкой", 5);
+		coffeeDeliveryMap.put("Без доставки", "Without delivery"); 
+		coffeeDeliveryMap.put("С доставкой", "With delivery");
 	}
 	
-	public void coffeeDeliverChanged(ValueChangeEvent e) {
-		totalCost = (Integer) e.getNewValue();
+	public void coffeeDeliveryChanged() {
+		if ("With delivery".equals(deliveryType)) {
+			totalCost = getCoffeeCost() + 5;
+		} else {
+			totalCost = getCoffeeCost();
+		}
 	}
 
+	private Integer getCoffeeCost() {
+		if (coffeeType != null) {
+			switch (coffeeType) {
+			case "Arabica":
+				return 10;
+			case "Canephora":
+				return 15;
+			case "Liberica":
+				return 20;
+			default:
+				return 0;
+			}
+		}
+		
+		return 0;
+	}
+	
 	/*
 	 * Геттеры, сеттеры
 	 */
@@ -152,7 +152,14 @@ public class CoffeeOrder implements java.io.Serializable {
 		this.totalCost = totalCost;
 	}
 
+	public Map<String, String> getCoffeeDeliveryMap() {
+		return coffeeDeliveryMap;
+	}
 
+	public void setCoffeeDeliveryMap(Map<String, String> coffeeDeliveryMap) {
+		this.coffeeDeliveryMap = coffeeDeliveryMap;
+	}
+	
 	public Map<String, String> getCoffeeTypeMap() {
 		return coffeeTypeMap;
 	}
@@ -161,9 +168,6 @@ public class CoffeeOrder implements java.io.Serializable {
 		this.coffeeTypeMap = coffeeTypeMap;
 	}
 
-	public Map<String, Integer> getCoffeeDeliveryMap() {
-		return coffeeDeliveryMap;
-	}
 
 	/*
 	 * Переопределение hashCode

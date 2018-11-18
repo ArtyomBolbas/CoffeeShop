@@ -6,13 +6,13 @@
 	xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core">
 
-<head>
+<h:head>
 <meta charset="UTF-8"></meta>
 <title>Заказ</title>
 <link rel="stylesheet" href="css/order.css"></link>
-</head>
+</h:head>
 
-<body>
+<h:body>
 	<main>
 	<h:form>
 		<fieldset id="fieldset_main">
@@ -29,15 +29,10 @@
 			</div>
 			<div id="bottom">
 				<label>Выберети сорт кофе: 
-<!-- 					<h:selectOneMenu value="#{coffeeOrder.coffeeType}" converter="coffeeTypeConverter">
-   						<f:selectItem itemValue="Arabica" itemLabel="Coffee Arabica (10$)" />
-   						<f:selectItem itemValue="Canephora" itemLabel="Coffee Canephora (10$)" />
-   						<f:selectItem itemValue="Liberica" itemLabel="Coffee Liberica (10$)" />
-					</h:selectOneMenu> -->
-					<h:selectOneMenu value="#{editCoffeeOrder.totalCost}" onchange="submit()"
-						valueChangeListener="#{editCoffeeOrder.coffeeTypeChanged}">
-   						<f:selectItems value="#{editCoffeeOrder.coffeeCostMap}" />
-   					</h:selectOneMenu>
+					<h:selectOneMenu value="#{editCoffeeOrder.coffeeType}">
+	  					    <f:selectItems value="#{editCoffeeOrder.coffeeTypeMap}"/>
+	    					<f:ajax listener="#{editCoffeeOrder.coffeeTypeChanged}" render="totalCostValue"/>
+					</h:selectOneMenu> 
 				</label>				
 				<br></br> <br></br>
 				 <fieldset>
@@ -46,9 +41,9 @@
 					</legend>
 					<label>Вы можете заказать доставку (+5$ к стоимости заказа): 
 						<h:selectOneRadio value="#{editCoffeeOrder.deliveryType}">
-   							<f:selectItem itemValue="WithoutDelivery" itemLabel="Без доставки" selected="selected"/>
-   							<f:selectItem itemValue="Delivery" itemLabel="С доставкой" />
-						</h:selectOneRadio> 
+   							<f:selectItems value="#{editCoffeeOrder.coffeeDeliveryMap}"/>
+    						<f:ajax listener="#{editCoffeeOrder.coffeeDeliveryChanged}" render="totalCostValue" />
+						</h:selectOneRadio> 					
 					</label>
 			 	</fieldset> 
 				<br></br> 
@@ -83,7 +78,7 @@
 				<br></br>
 				<br></br> 
 				<label>Стоимость заказа: 
- 					<h:outputText value="#{editCoffeeOrder.totalCost}" disabled="disabled" placeholder="0"></h:outputText>
+ 					<h:outputText id="totalCostValue" value="#{editCoffeeOrder.totalCost}" disabled="disabled" placeholder="0"></h:outputText>
 				</label>
 				<label>$</label>
 				<br></br> <br></br> 
@@ -92,5 +87,5 @@
 		</fieldset>
 	</h:form>
 	</main>
-</body>
+</h:body>
 </html>

@@ -15,7 +15,7 @@ import org.hibernate.Transaction;
 import by.bolbas.model.CoffeeOrder;
 import by.bolbas.util.HibernateUtil;
 
-@ManagedBean  @ApplicationScoped
+@ManagedBean  
 public class DatabaseOperations {
 	/*
 	 * Класс DatabaseOperations отвечает за операции производимые с базой данных.
@@ -40,8 +40,7 @@ public class DatabaseOperations {
 			transObj = sessionObj.beginTransaction();
 			sessionObj.save(order);
 			LOG.debug("Запущен метод - addOrder(); (Метод добавления \"Заказа\"), в классе -  DatabaseOperations");
-
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("createdStudentId",  order.getId());					
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("createdCoffeeOrderMessage",  "Заказ принят в обработку");					
 		} catch (Exception exceptionObj) {
 			exceptionObj.printStackTrace();
 		} finally {
@@ -73,27 +72,14 @@ public class DatabaseOperations {
 	 */
 	@SuppressWarnings("unchecked")
 	public List<CoffeeOrder> retrieveCoffeeOrder() {		
-		CoffeeOrder coffeeOrdersObj;
-		List<CoffeeOrder> allCoffeeOrders = new ArrayList<CoffeeOrder>();
+		List<CoffeeOrder> allCoffeeOrders = new ArrayList<>();
 		try {
 			transObj = sessionObj.beginTransaction();
 			Query queryObj = sessionObj.createQuery("from CoffeeOrder");
-			allCoffeeOrders = queryObj.list();
-			for(CoffeeOrder coffeeOrder : allCoffeeOrders) {
-				coffeeOrdersObj = new CoffeeOrder(); 	
-				coffeeOrdersObj.setId(coffeeOrder.getId());
-				coffeeOrdersObj.setCoffeeType(coffeeOrder.getCoffeeType());
-				coffeeOrdersObj.setDeliveryType(coffeeOrder.getDeliveryType());
-				coffeeOrdersObj.setEndTime(coffeeOrder.getEndTime());
-				coffeeOrdersObj.setOrderDate(coffeeOrder.getOrderDate());
-				coffeeOrdersObj.setStartTime(coffeeOrder.getStartTime());
-				coffeeOrdersObj.setTotalCost(coffeeOrder.getTotalCost());
-				coffeeOrdersObj.setWeight(coffeeOrder.getWeight());						
-				allCoffeeOrders.add(coffeeOrdersObj);  
-			}			
+			allCoffeeOrders = queryObj.list();			
 			LOG.debug("Запущен метод - retrieveCoffeeOrder(); (Метод получение всех \"Заказов\"), в классе -  DatabaseOperations");
 
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("findCoffeeOrderById", "true");
+			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("findCoffeeOrderById", "true");
 		} catch(Exception exceptionObj) {
 			exceptionObj.printStackTrace();
 		} finally {
@@ -167,7 +153,7 @@ public class DatabaseOperations {
 		} finally {
 			transObj.commit();
 		}
-		return "/index.xhtml?faces-redirect=true";
+		return "/index.xhtml?faces-redirect=true"; 
 	}
 	
 	/*
@@ -178,8 +164,8 @@ public class DatabaseOperations {
 	public String deleteCoffeeOrderInDb(int delCoffeeOrderId) {
 		try {
 			transObj = sessionObj.beginTransaction();
-			CoffeeOrder studId = (CoffeeOrder)sessionObj.load(CoffeeOrder.class, new Integer(delCoffeeOrderId));
-			sessionObj.delete(studId);
+			CoffeeOrder cOId = (CoffeeOrder)sessionObj.load(CoffeeOrder.class, new Integer(delCoffeeOrderId));
+			sessionObj.delete(cOId);
 			LOG.debug("Запущен метод - deleteCoffeeOrderInDb(); (Метод удаляет информацию а каком-то конкретном \"Заказе\"), в классе -  DatabaseOperations");
 
 			
@@ -192,66 +178,4 @@ public class DatabaseOperations {
 		return "/index.xhtml?faces-redirect=true";
 	}
 
-	/*// Method To Fetch Particular Student Details From The Database
-	public List<Student> getStudentById(int studentId) {	
-		Student particularStuDObj = new Student();
-		List<Student> particularStudentList = new ArrayList<Student>();            
-		try {
-			transObj = sessionObj.beginTransaction();
-			Query queryObj = sessionObj.createQuery("from Student where id= :student_id").setInteger("student_id", studentId);			
-			particularStuDObj = (Student)queryObj.uniqueResult();
-			particularStudentList = queryObj.list();			
-			System.out.println("Student Record With Id: " + studentId + " Is Fetched Successfully From Database");
-
-			// XHTML Response Text
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("findStudentById",  studentId);
-		} catch(Exception exceptionObj) {
-			exceptionObj.printStackTrace();
-		} finally {
-			transObj.commit();
-		}
-		return particularStudentList;
-	}*/
-
-	// Method To Update Particular Student Details In The Database	
-	/*public void updateStudentRecord(Student updateStudentObj) {
-		try {
-			transObj = sessionObj.beginTransaction();
-			sessionObj.update(updateStudentObj);		
-			System.out.println("Student Record With Id: " + updateStudentObj.getId() + " Is Successfully Updated In Database");	
-
-			// XHTML Response Text
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("updatedStudentRecord",  "Success");
-		} catch(Exception exceptionObj){
-			exceptionObj.printStackTrace();
-		} finally {
-			transObj.commit();
-		}
-	}*/
-
-	/*@SuppressWarnings("unchecked")
-	public List<Student> retrieveStudent() {		
-		Student studentsObj;
-		List<Student>allStudents = new ArrayList<Student>();
-		try {
-			transObj = sessionObj.beginTransaction();
-			Query queryObj = sessionObj.createQuery("from Student");
-			allStudents = queryObj.list();
-			for(Student stud : allStudents) {
-				studentsObj = new Student(); 								
-				studentsObj.setName(stud.getName());
-				studentsObj.setDepartment(stud.getDepartment());								
-				allStudents.add(studentsObj);  
-			}			
-			System.out.println("All The Students Records Are Fetched Successfully From Database");
-
-			// XHTML Response Text
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("findStudentById", "true");
-		} catch(Exception exceptionObj) {
-			exceptionObj.printStackTrace();
-		} finally {
-			transObj.commit();
-		}
-		return allStudents;
-	}*/
 }

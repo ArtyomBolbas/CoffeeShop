@@ -1,6 +1,7 @@
 package by.bolbas.util;
 
 import org.hibernate.SessionFactory;
+
 import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
@@ -10,7 +11,7 @@ public class HibernateUtil {
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/*
-	 * Поля, свойства необходииые AppUrlStore 
+	 * Поля, свойства необходииые HibernateUtil 
 	 */
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private static SessionFactory sessionFactoryObj = buildSessionFactoryObj();
