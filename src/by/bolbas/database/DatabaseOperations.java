@@ -2,9 +2,9 @@ package by.bolbas.database;
 
 import java.util.ArrayList;
 
+
 import java.util.List;
 
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
@@ -42,6 +42,7 @@ public class DatabaseOperations {
 			LOG.debug("Запущен метод - addOrder(); (Метод добавления \"Заказа\"), в классе -  DatabaseOperations");
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("createdCoffeeOrderMessage",  "Заказ принят в обработку");					
 		} catch (Exception exceptionObj) {
+			LOG.error("Ошибка в методе - addOrder(); (Метод добавления \"Заказа\"), в классе -  DatabaseOperations");
 			exceptionObj.printStackTrace();
 		} finally {
 			transObj.commit();
@@ -56,10 +57,10 @@ public class DatabaseOperations {
 	public Long getOrderCount() {
 		try {
 			LOG.debug("Запущен метод - getOrderCount(); (Метод получаение кол-во \"Заказов\"), в классе -  DatabaseOperations");
-
 			transObj = sessionObj.beginTransaction();
 			return  (Long) sessionObj.createQuery("select count(*) from CoffeeOrder").uniqueResult();
 		} catch (Exception exceptionObj) {
+			LOG.error("Ошибка в методе - getOrderCount(); (Метод получаение кол-во \"Заказов\"), в классе -  DatabaseOperations");
 			exceptionObj.printStackTrace();
 		} finally {
 			transObj.commit();
@@ -78,9 +79,9 @@ public class DatabaseOperations {
 			Query queryObj = sessionObj.createQuery("from CoffeeOrder");
 			allCoffeeOrders = queryObj.list();			
 			LOG.debug("Запущен метод - retrieveCoffeeOrder(); (Метод получение всех \"Заказов\"), в классе -  DatabaseOperations");
-
 			FacesContext.getCurrentInstance().getExternalContext().getRequestMap().put("findCoffeeOrderById", "true");
 		} catch(Exception exceptionObj) {
+			LOG.error("Ошибка в методе - retrieveCoffeeOrder(); (Метод получение всех \"Заказов\"), в классе -  DatabaseOperations");
 			exceptionObj.printStackTrace();
 		} finally {
 			transObj.commit();
@@ -98,13 +99,11 @@ public class DatabaseOperations {
 		try {
 			transObj = sessionObj.beginTransaction();
 			Query queryObj = sessionObj.createQuery("from CoffeeOrder where id= :order_id").setInteger("order_id", orderId);
-			
 			particularOrdObj = (CoffeeOrder)queryObj.uniqueResult();
-			
 			LOG.debug("Запущен метод - getOrderById(); (Метод получния информации о конкретном \"Заказе\"), в классе -  DatabaseOperations");
-	
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("editCoffeeOrder",  particularOrdObj);
 		} catch(Exception exceptionObj) {
+			LOG.error("Ошибка в методе - getOrderById(); (Метод получния информации о конкретном \"Заказе\"), в классе -  DatabaseOperations");
 			exceptionObj.printStackTrace();
 		} finally {
 			transObj.commit();
@@ -121,15 +120,13 @@ public class DatabaseOperations {
 		try {
 			transObj = sessionObj.beginTransaction();
 			Query queryObj = sessionObj.createQuery("from CoffeeOrder where id= :order_id").setInteger("order_id", orderId);
-			
 			particularOrdObj = (CoffeeOrder)queryObj.uniqueResult();
-			
 			LOG.debug("Запущен метод - getOrderByDeleteId(); (Метод получения информации о конкретном \"Заказе\"), в классе -  DatabaseOperations");
-		
 			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("deleteCoffeeOrder",  particularOrdObj);
 		} catch(Exception exceptionObj) {
 			exceptionObj.printStackTrace();
 		} finally {
+			LOG.error("Ошибка в методе - getOrderByDeleteId(); (Метод получения информации о конкретном \\\"Заказе\\\"), в классе -  DatabaseOperations");
 			transObj.commit();
 		}
 		return "/orderDelete.xhtml?faces-redirect=true";
@@ -145,12 +142,11 @@ public class DatabaseOperations {
 			transObj = sessionObj.beginTransaction();
 			sessionObj.update(updateCoffeeOrderObj);		
 			LOG.debug("Запущен метод - updateCoffeeOrderRecord(); (Метод обновляет информацию а каком-то конкретном \"Заказе\"), в классе -  DatabaseOperations");
-
-			
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("updatedCoffeeOrderRecord",  "Success");
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("createdCoffeeOrderMessage",  "Заказ обновлен");
 		} catch(Exception exceptionObj){
 			exceptionObj.printStackTrace();
 		} finally {
+			LOG.error("Ошибка в методе - updateCoffeeOrderRecord(); (Метод обновляет информацию а каком-то конкретном \"Заказе\"), в классе -  DatabaseOperations");
 			transObj.commit();
 		}
 		return "/index.xhtml?faces-redirect=true"; 
@@ -167,12 +163,11 @@ public class DatabaseOperations {
 			CoffeeOrder cOId = (CoffeeOrder)sessionObj.load(CoffeeOrder.class, new Integer(delCoffeeOrderId));
 			sessionObj.delete(cOId);
 			LOG.debug("Запущен метод - deleteCoffeeOrderInDb(); (Метод удаляет информацию а каком-то конкретном \"Заказе\"), в классе -  DatabaseOperations");
-
-			
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("deletedCoffeeOrderId",  delCoffeeOrderId);	
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("createdCoffeeOrderMessage",  "Заказ удален");	
 		} catch (Exception exceptionObj) {
 			exceptionObj.printStackTrace();
 		} finally {
+			LOG.error("Ошибка в методе - deleteCoffeeOrderInDb(); (Метод удаляет информацию а каком-то конкретном \"Заказе\"), в классе -  DatabaseOperations");
 			transObj.commit();
 		}
 		return "/index.xhtml?faces-redirect=true";

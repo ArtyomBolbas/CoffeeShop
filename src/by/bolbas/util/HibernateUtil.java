@@ -6,7 +6,7 @@ import org.hibernate.cfg.Configuration;
 
 public class HibernateUtil {
 	/*
-	 * Класс HibernateUtil. Отвечает за ......ДОПИСАТЬ!!!!!
+	 * Класс HibernateUtil. Отвечает за создание, получение SessionFactory;
 	 */
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -18,10 +18,11 @@ public class HibernateUtil {
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	
-	// Create The SessionFactory Object From Standard (Hibernate.cfg.xml) Configuration File
+	
 	/*
-	 * Создает ......ДОПИСАТЬ!!!!!!!!!!!!
+	 * Создаем объект SessionFactory 
 	 */
+	@SuppressWarnings("deprecation")
 	public static SessionFactory buildSessionFactoryObj() {
 		try {
 			sessionFactoryObj = new Configuration().configure().buildSessionFactory();

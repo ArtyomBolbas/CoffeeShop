@@ -3,14 +3,10 @@ package by.bolbas.model;
 import java.util.Date;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.ViewScoped;
-import javax.faces.event.AjaxBehaviorEvent;
-import javax.faces.event.ValueChangeEvent;
 
 
 @ManagedBean
@@ -22,43 +18,64 @@ public class CoffeeOrder implements java.io.Serializable {
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	/*
-	 * Поля, свойства необходииые CoffeeOrder 
+	 * Поля, свойства необходииые CoffeeOrder
 	 */
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private static final long serialVersionUID = -1540437138823134510L;
 
 	private Integer id;
 	private String coffeeType = "Arabica";
-	private String deliveryType;
+	private String deliveryType = "Without delivery";
 	private Integer weight;
 	private Date orderDate;
 	private Date startTime;
 	private Date endTime;
 	private Integer totalCost = 10;
 
+	private static final String COFFEE_TYPE_ARABICA = "Arabica";
+	private static final String COFFEE_TYPE_CANEPHORA = "Canephora";
+	private static final String COFFEE_TYPE_LIBERICA = "Liberica";
+
+	private static final String COFFEE_TYPE_PRICE_ARABICA = "Coffee Arabica (10$)";
+	private static final String COFFEE_TYPE_PRICE_CANEPHORA = "Coffee Canephora (15$)";
+	private static final String COFFEE_TYPE_PRICE_LIBERICA = "Coffee Liberica (20$)";
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
+
 	/*
-	 *  ........ДОПИСАТЬ!!!!!!!!
+	 * Присваеваем значение в зависимости от выбора пользователя. Делаем
+	 * соответствие наименования кофе его значению для дальнейшего отображения на
+	 * странице
 	 */
 	private Map<String, String> coffeeTypeMap = new HashMap<>();
-  	{
-  		coffeeTypeMap.put("Coffee Arabica (10$)", "Arabica");
-		coffeeTypeMap.put("Coffee Canephora (15$)", "Canephora");
-		coffeeTypeMap.put("Coffee Liberica (20$)", "Liberica");
- 	}
- 
+	{
+		coffeeTypeMap.put(COFFEE_TYPE_PRICE_ARABICA, COFFEE_TYPE_ARABICA);
+		coffeeTypeMap.put(COFFEE_TYPE_PRICE_CANEPHORA, COFFEE_TYPE_CANEPHORA);
+		coffeeTypeMap.put(COFFEE_TYPE_PRICE_LIBERICA, COFFEE_TYPE_LIBERICA);
+	}
+
+	/*
+	 * Рассчитываем суммарную стоимость в зависимости от выбора кофе
+	 */
 	public void coffeeTypeChanged() {
 		totalCost = getCoffeeCost();
 	}
-	
+
+	/*
+	 * Присваеваем значение в зависимости от выбора пользователя. Делаем
+	 * соответствие выбора доставки, его значения для дальнейшего отображения на
+	 * странице.
+	 */
 	private Map<String, String> coffeeDeliveryMap = new HashMap<>();
-	
 	{
-		coffeeDeliveryMap.put("Без доставки", "Without delivery"); 
+		coffeeDeliveryMap.put("Без доставки", "Without delivery");
 		coffeeDeliveryMap.put("С доставкой", "With delivery");
 	}
-	
+
+	/*
+	 * В зависимости от выбора пользователя: "With delivery" - добавляет к общей
+	 * стоимости заказа +5, "Without delivery" - оставляет значение прежним
+	 */
 	public void coffeeDeliveryChanged() {
 		if ("With delivery".equals(deliveryType)) {
 			totalCost = getCoffeeCost() + 5;
@@ -67,6 +84,9 @@ public class CoffeeOrder implements java.io.Serializable {
 		}
 	}
 
+	/*
+	 * Возвращает значение в зависимости от выбора пользователя
+	 */
 	private Integer getCoffeeCost() {
 		if (coffeeType != null) {
 			switch (coffeeType) {
@@ -80,10 +100,9 @@ public class CoffeeOrder implements java.io.Serializable {
 				return 0;
 			}
 		}
-		
 		return 0;
 	}
-	
+
 	/*
 	 * Геттеры, сеттеры
 	 */
@@ -159,7 +178,7 @@ public class CoffeeOrder implements java.io.Serializable {
 	public void setCoffeeDeliveryMap(Map<String, String> coffeeDeliveryMap) {
 		this.coffeeDeliveryMap = coffeeDeliveryMap;
 	}
-	
+
 	public Map<String, String> getCoffeeTypeMap() {
 		return coffeeTypeMap;
 	}
@@ -167,7 +186,6 @@ public class CoffeeOrder implements java.io.Serializable {
 	public void setCoffeeTypeMap(Map<String, String> coffeeTypeMap) {
 		this.coffeeTypeMap = coffeeTypeMap;
 	}
-
 
 	/*
 	 * Переопределение hashCode

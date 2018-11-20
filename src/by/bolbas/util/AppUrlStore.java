@@ -12,7 +12,7 @@ import javax.faces.context.FacesContext;
 @ApplicationScoped
 public class AppUrlStore implements Serializable {
 	/*
-	 * Класс AppUrlStore. Отвечает за хранение адресов страниц!!!!!
+	 * Класс AppUrlStore. Отвечает за хранение адресов страниц
 	 */
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////

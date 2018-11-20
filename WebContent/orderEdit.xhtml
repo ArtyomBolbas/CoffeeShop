@@ -8,7 +8,7 @@
 
 <h:head>
 <meta charset="UTF-8"></meta>
-<title>Заказ</title>
+<title>Страница редактирования</title>
 <link rel="stylesheet" href="css/order.css"></link>
 </h:head>
 
@@ -56,7 +56,6 @@
 				<br></br> <br></br>
 				<label> Дата: 
 					<h:inputText id="orderDate" value="#{editCoffeeOrder.orderDate}" converter="orderDateConverter" converterMessage="Некорректно задана дата">
-			       		<!--  <f:validateLongRange maximum="5000" minimum="100" /> -->
 					</h:inputText> 
 					<h:message for="orderDate" style="color:red" />
 				</label> 
