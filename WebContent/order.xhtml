@@ -22,17 +22,17 @@
 				<div id="top_left"><h:link outcome="index" ><img src="image/coffeeShop.jpg" alt="icon (Coffee Shop)" /></h:link></div>
 				<div id="top_right">
 					<label>Кол-во заказов:
-					<h:outputText value="#{databaseOperations.orderCount}" disabled="disabled" placeholder="0"></h:outputText>
+					<h:outputText value="#{orderPageController.count}" disabled="disabled" placeholder="0"></h:outputText>
 					</label>
 				</div>
 			</div>
 			<div id="bottom">
 				<label>Выберети сорт кофе: 
-				<h:selectOneMenu value="#{coffeeOrder.coffeeType}">
-  					    <f:selectItems value="#{coffeeOrder.coffeeTypeMap}"/>
-    					<f:ajax listener="#{coffeeOrder.coffeeTypeChanged}" render="totalCostValue"/>
+				<h:selectOneMenu value="#{orderPageController.selectedCoffeeName}">
+  					    <f:selectItems value="#{orderPageController.coffeeNames}"/>
+    					<f:ajax listener="#{orderPageController.coffeeTypeChanged}" render="totalCostValue"/>
 				</h:selectOneMenu>   
-
+ 
 				</label>					
 				<br></br> <br></br>
 				 <fieldset>
@@ -81,7 +81,7 @@
 				</label>
 				<label>$</label>
 				<br></br> <br></br> 
-					 <h:commandButton value="Оформить заказ" action="#{databaseOperations.addOrder(coffeeOrder)}" /> 
+					 <h:commandButton value="Оформить заказ" action="#{databaseOperations.addOrder(coffeeOrder)}" />  
 			</div>
 		</fieldset>
 	</h:form>

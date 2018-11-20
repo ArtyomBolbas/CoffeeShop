@@ -2,18 +2,12 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="by.bolbas.model.CoffeeOrder" table="coffeeOrder"
+	<class name="by.bolbas.entity.CoffeeOrder" table="coffeeOrder"
 		catalog="coffeeShop" optimistic-lock="version">
 		<id name="id" type="java.lang.Integer">
 			<column name="id" />
 			<generator class="increment" />
 		</id>
-		<property name="coffeeType" type="string">
-			<column name="coffee_type" />
-		</property>
-		<property name="deliveryType" type="string">
-			<column name="delivery_type" />
-		</property>
 		<property name="weight" type="java.lang.Integer">
 			<column name="weight" />
 		</property>
@@ -29,5 +23,8 @@
 		<property name="totalCost" type="java.lang.Integer">
 			<column name="total_cost" />
 		</property>
+		<one-to-one name="coffee" class="by.bolbas.entity.Coffee"></one-to-one>
+		<one-to-one name="delivery"
+			class="by.bolbas.entity.Delivery"></one-to-one>
 	</class>
 </hibernate-mapping>

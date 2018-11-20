@@ -1,4 +1,4 @@
-package by.bolbas.database;
+package by.bolbas.dao;
 
 import java.util.ArrayList;
 
@@ -11,7 +11,8 @@ import org.apache.log4j.Logger;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import by.bolbas.model.CoffeeOrder;
+
+import by.bolbas.entity.CoffeeOrder;
 import by.bolbas.util.HibernateUtil;
 
 @ManagedBean

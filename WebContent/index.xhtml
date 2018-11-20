@@ -21,7 +21,7 @@
 				<div id="top_left"><img src="image/coffeeShop.jpg" alt="icon (Coffee Shop)" title="Главная страница"/></div>
 				<div id="top_right">
 					<label for="orders">Кол-во заказов:</label> 
-					<h:outputText value="#{databaseOperations.orderCount}" disabled="disabled" placeholder="0"></h:outputText>
+					<h:outputText value="#{indexPageController.count}" disabled="disabled" placeholder="0"></h:outputText>									
 				</div>
 			</div>
  			<h:outputText rendered="#{not empty createdCoffeeOrderMessage}" value="#{createdCoffeeOrderMessage}" styleClass="successText" />			

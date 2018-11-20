@@ -52,5 +52,6 @@ INSERT INTO coffee(name, price) VALUES ('Liberica', 20);
 INSERT INTO delivery(type, price) VALUES ('Without delivery', 0);
 INSERT INTO delivery(type, price) VALUES ('With delivery', 5);
 
+INSERT INTO coffeeOrder (coffee_id, delivery_id, weight, order_date, start_time, end_time, total_cost) VALUES (1, 1, 100, '12/12/2018', '10:00', '12:00', 15);
 
 
