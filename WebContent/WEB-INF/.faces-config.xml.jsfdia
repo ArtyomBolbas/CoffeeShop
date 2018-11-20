@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#index.xhtml" PATH="/index.xhtml"
+  SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#index.xhtml:0" NAME="item"
+   PATH="/index.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="order:#{appUrlStore.orderPage}:#order.xhtml"
+    NAME="output" PATH="/order.xhtml" TARGET="rules:#order.xhtml"
+    TITLE="#{appUrlStore.orderPage}:order" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="ordersTable:#{appUrlStore.ordersTablePage}:#ordersTable.xhtml"
+    NAME="output1" PATH="/ordersTable.xhtml"
+    TARGET="rules:#ordersTable.xhtml"
+    TITLE="#{appUrlStore.ordersTablePage}:ordersTable" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#order.xhtml" PATH="/order.xhtml"
+  SHAPE="256,33,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#order.xhtml:0" NAME="item"
+   PATH="/order.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="index:#{appUrlStore.indexPage}:#index.xhtml"
+    NAME="output" PATH="/index.xhtml" TARGET="rules:#index.xhtml"
+    TITLE="#{appUrlStore.indexPage}:index" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="index:#{databaseOperations.addOrder(coffeeOrder)}:#index.xhtml"
+    NAME="output1" PATH="/index.xhtml" TARGET="rules:#index.xhtml"
+    TITLE="#{databaseOperations.addOrder(coffeeOrder)}:index" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#ordersTable.xhtml" PATH="/ordersTable.xhtml"
+  SHAPE="256,177,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#ordersTable.xhtml:0" NAME="item"
+   PATH="/ordersTable.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="index:#{appUrlStore.indexPage}:#index.xhtml"
+    NAME="output" PATH="/index.xhtml" TARGET="rules:#index.xhtml"
+    TITLE="#{appUrlStore.indexPage}:index" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="orderEdit:#{databaseOperations.getOrderById(item.id)}:#orderEdit.xhtml"
+    NAME="output1" PATH="/orderEdit.xhtml"
+    TARGET="rules:#orderEdit.xhtml"
+    TITLE="#{databaseOperations.getOrderById(item.id)}:orderEdit" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="orderDelete:#{databaseOperations.getOrderByDeleteId(item.id)}:#orderDelete.xhtml"
+    NAME="output2" PATH="/orderDelete.xhtml"
+    TARGET="rules:#orderDelete.xhtml"
+    TITLE="#{databaseOperations.getOrderByDeleteId(item.id)}:orderDelete" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#orderEdit.xhtml" PATH="/orderEdit.xhtml"
+  SHAPE="512,161,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#orderEdit.xhtml:0" NAME="item"
+   PATH="/orderEdit.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="index:#{appUrlStore.indexPage}:#index.xhtml"
+    NAME="output" PATH="/index.xhtml" TARGET="rules:#index.xhtml"
+    TITLE="#{appUrlStore.indexPage}:index" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="index:#{databaseOperations.updateCoffeeOrderRecord(editCoffeeOrder)}:#orderEdit.xhtml"
+    NAME="output1" PATH="/orderEdit.xhtml"
+    TARGET="rules:#orderEdit.xhtml"
+    TITLE="#{databaseOperations.updateCoffeeOrderRecord(editCoffeeOrder)}:index" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#orderDelete.xhtml" PATH="/orderDelete.xhtml"
+  SHAPE="528,337,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#orderDelete.xhtml:0" NAME="item"
+   PATH="/orderDelete.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="index:#{appUrlStore.indexPage}:#index.xhtml"
+    NAME="output" PATH="/index.xhtml" TARGET="rules:#index.xhtml"
+    TITLE="#{appUrlStore.indexPage}:index" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="index:#{databaseOperations.deleteCoffeeOrderInDb(deleteCoffeeOrder.id)}:#index.xhtml"
+    NAME="output1" PATH="/index.xhtml" TARGET="rules:#index.xhtml"
+    TITLE="#{databaseOperations.deleteCoffeeOrderInDb(deleteCoffeeOrder.id)}:index" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+</PROCESS>

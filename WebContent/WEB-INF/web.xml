@@ -25,10 +25,4 @@
   <listener>
     <listener-class>com.sun.faces.config.ConfigureListener</listener-class>
   </listener>
-  <context-param>
-    <param-name>BaseUrl</param-name>
-    <param-value>
-			http://localhost:8080/Coffee_Shop/
-		</param-value>
-  </context-param>
 </web-app>

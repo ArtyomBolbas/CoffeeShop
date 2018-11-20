@@ -1,8 +1,93 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<faces-config
-    xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
-    version="2.2">
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
+
+	<navigation-rule>
+		<from-view-id>/index.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{appUrlStore.orderPage}</from-action>
+			<from-outcome>order</from-outcome>
+			<to-view-id>/order.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{appUrlStore.ordersTablePage}</from-action>
+			<from-outcome>ordersTable</from-outcome>
+			<to-view-id>/ordersTable.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/order.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{appUrlStore.indexPage}</from-action>
+			<from-outcome>index</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{databaseOperations.addOrder(coffeeOrder)}</from-action>
+			<from-outcome>index</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/ordersTable.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{appUrlStore.indexPage}</from-action>
+			<from-outcome>index</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{databaseOperations.getOrderById(item.id)}</from-action>
+			<from-outcome>orderEdit</from-outcome>
+			<to-view-id>/orderEdit.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{databaseOperations.getOrderByDeleteId(item.id)}</from-action>
+			<from-outcome>orderDelete</from-outcome>
+			<to-view-id>/orderDelete.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/orderEdit.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{appUrlStore.indexPage}</from-action>
+			<from-outcome>index</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{databaseOperations.updateCoffeeOrderRecord(editCoffeeOrder)}</from-action>
+			<from-outcome>index</from-outcome>
+			<to-view-id>/orderEdit.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+		<navigation-rule>
+		<from-view-id>/orderDelete.xhtml</from-view-id>
+		<navigation-case>
+			<from-action>#{appUrlStore.indexPage}</from-action>
+			<from-outcome>index</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-action>#{databaseOperations.deleteCoffeeOrderInDb(deleteCoffeeOrder.id)}</from-action>
+			<from-outcome>index</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 
 </faces-config>

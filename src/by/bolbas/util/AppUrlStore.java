@@ -21,33 +21,19 @@ public class AppUrlStore implements Serializable {
 	 */
 	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private static final long serialVersionUID = 1L;
-
-	private String baseUrl = null;
-	private String orderUrl = null;
-	private String ordersTableUrl = null;
-	private String orderEditUrl = null;
-	private String orderDeleteUrl = null;
-
-	public String getBaseUrl() {return baseUrl; }
-	public String getOrderUrl() { return orderUrl; }
-	public String getOrdersTableUrl() {return ordersTableUrl; }
-	public String getOrderEditUrl() {return orderEditUrl; }
-	public String getOrderDeleteUrl() {return orderDeleteUrl; }
 	
-	////////////////////////////////////////////////////////////////////////////////////////////////////////
+	public String indexPage() {
+		return "index";
+	}
 	
-	/*
-	 * 	Метод вызывается после создания объекта, служит для инициализации.
-	 */
-	@PostConstruct
-    public void init() {
-		ExternalContext externalContext = FacesContext.getCurrentInstance().getExternalContext();
-		String baseUrl = externalContext.getInitParameter("BaseUrl");
-
-		this.baseUrl = baseUrl;
-		this.orderUrl = baseUrl + "order.xhtml";
-		this.ordersTableUrl = baseUrl + "ordersTable.xhtml";
-		this.orderEditUrl = baseUrl + "orderEdit.xhtml";
-		this.orderDeleteUrl = baseUrl + "orderDelete.xhtml";
-    }
+	public String orderPage() {
+		return "order";
+	}
+	
+	public String ordersTablePage() {
+		return "ordersTable";
+	}
+	
+	
+	
 }

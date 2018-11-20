@@ -12,7 +12,7 @@
 </head>
 
 <body>
-	<main>
+	<h:form styleClass="form">
 		<fieldset>
 			<legend>
 				<span id="coffeeShop">Coffee shop</span>
@@ -26,18 +26,19 @@
 			</div>
  			<h:outputText rendered="#{not empty createdCoffeeOrderMessage}" value="#{createdCoffeeOrderMessage}" styleClass="successText" />			
 			<div id="bottom">
-				<a href="#{appUrlStore.orderUrl}" title="Заказать кофе">
+				<h:commandLink action="#{appUrlStore.orderPage}" >
 					<div id="bottom_left">
 						<span class="button">Заказать</span>
 					</div>
-				</a> <a href="#{appUrlStore.ordersTableUrl}" title="Редактировать заказ">
+				</h:commandLink>
+				<h:commandLink action="#{appUrlStore.ordersTablePage}" >
 					<div id="bottom_right">
 						<span class="button">Редактировать</span>
 					</div>
-				</a>
+				</h:commandLink>
 			</div>
 		</fieldset>
-	</main>
+	</h:form>
 </body>
 
 </html>

@@ -13,13 +13,13 @@
 </head>
 
 <body>
-	<main> <h:form>
+	<h:form>
 		<fieldset id="fieldset_main">
 			<legend>
 				<span id="coffeeShop">Coffee shop</span>
 			</legend>
 			<div id="top">
-				<div id="top_left"><a href="#{appUrlStore.baseUrl}" title="Главная страница"><img src="image/coffeeShop.jpg" alt="icon (Coffee Shop)" /></a></div>
+				<div id="top_left"><h:commandLink action="#{appUrlStore.indexPage}" ><img src="image/coffeeShop.jpg" alt="icon (Coffee Shop)" /></h:commandLink></div>
 				<div id="top_right">
 					<label>Кол-во заказов: <h:outputText
 							value="#{databaseOperations.orderCount}" disabled="disabled"
@@ -81,6 +81,6 @@
 				</h:form>
 			</div>
 		</fieldset>
-	</h:form> </main>
+	</h:form>
 </body>
 </html>
