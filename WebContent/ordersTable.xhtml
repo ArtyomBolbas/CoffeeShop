@@ -16,22 +16,22 @@
 	<h:form>
 		<fieldset id="fieldset_main">
 			<legend>
-				<span id="coffeeShop">Coffee shop</span>
+				<h:panelGroup styleClass="coffeeShop">Coffee shop</h:panelGroup>
 			</legend>
-			<div id="top">
-				<div id="top_left"><h:commandLink action="#{appUrlStore.indexPage}" ><img src="image/coffeeShop.jpg" alt="icon (Coffee Shop)" /></h:commandLink></div>
-				<div id="top_right">
+			<h:panelGroup layout="block" styleClass="top">
+				<h:panelGroup layout="block" styleClass="top_left"><h:commandLink action="#{appUrlStore.indexPage}" ><img src="image/coffeeShop.jpg" alt="icon (Coffee Shop)" /></h:commandLink></h:panelGroup>
+				<h:panelGroup layout="block" styleClass="top_right">
 					<label>Кол-во заказов: <h:outputText
-							value="#{databaseOperations.orderCount}" disabled="disabled"
+							value="#{ordersTablePageController.count}" disabled="disabled"
 							placeholder="0"></h:outputText>
 					</label>
-				</div>
-			</div>
-			<div id="bottom">
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="bottom">
 				<h:form>
 					<h:panelGrid columns="9">
 						<h:dataTable 
-							 value="#{databaseOperations.retrieveCoffeeOrder()}" var="item" headerClass="stud-table-header">
+							 value="#{ordersTablePageController.coffeeOrders}" var="item" headerClass="stud-table-header">
 							<h:column>
 								<f:facet name="header">Id</f:facet>
 								<h:outputText value="#{item.id}" styleClass="stud-table-row" />
@@ -42,7 +42,7 @@
 							</h:column>
 							<h:column>
 								<f:facet name="header">Кофе</f:facet>
-								<h:outputText value="#{item.coffeeType}" styleClass="stud-table-row" />
+								<h:outputText value="#{item.coffee.name}" styleClass="stud-table-row" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">Время ( С )</f:facet>
@@ -64,22 +64,22 @@
 							</h:column>
 							<h:column>
 								<f:facet name="header">Способ получения</f:facet>
-								<h:outputText value="#{item.deliveryType}" styleClass="stud-table-row" />
+								<h:outputText value="#{item.delivery.type}" styleClass="stud-table-row" />
 							</h:column>
 							<h:column>
 								<f:facet name="header">Сумма</f:facet>
 								<h:outputText value="#{item.totalCost}" styleClass="stud-table-row" />
 							</h:column>
 							<h:column>
-								<h:commandButton value="Редактировать" action="#{databaseOperations.getOrderById(item.id)}" />
+								<h:commandButton value="Редактировать" action="#{ordersTablePageController.editPage(item.id)}" />
 							</h:column>
 							<h:column>
-								<h:commandButton value="Удалить" action="#{databaseOperations.getOrderByDeleteId(item.id)}" />
+								<h:commandButton value="Удалить" action="#{ordersTablePageController.deletePage(item.id)}" />
 							</h:column> 
 						</h:dataTable>
 					</h:panelGrid>
 				</h:form>
-			</div>
+			</h:panelGroup>
 		</fieldset>
 	</h:form>
 </body>

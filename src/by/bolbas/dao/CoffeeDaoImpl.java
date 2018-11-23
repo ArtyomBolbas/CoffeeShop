@@ -11,12 +11,19 @@ import org.hibernate.Transaction;
 import by.bolbas.entity.Coffee;
 import by.bolbas.util.HibernateUtil;
 
+/**
+ * Класс "подписавший" интерфейс CoffeeDao
+ *
+ */
 public class CoffeeDaoImpl implements CoffeeDao {
 
 	private static Transaction transObj;
 	private static Session sessionObj = HibernateUtil.getSessionFactory().openSession();
 	private final static Logger LOG = Logger.getLogger(CoffeeDaoImpl.class);
 
+	/* 
+	 * Метод получает список всего кофе
+	 */
 	@Override
 	public List<Coffee> getAll() {
 		List<Coffee> allCoffee = new ArrayList<>();
@@ -25,10 +32,10 @@ public class CoffeeDaoImpl implements CoffeeDao {
 			Query queryObj = sessionObj.createQuery("from Coffee");
 			allCoffee = queryObj.list();
 			LOG.debug(
-					"Запущен метод - retrieveCoffee(); (Метод получение всех \"Coffee\"), в классе -  CoffeeDaoImpl");
+					"Запущен метод - getAll(); (Метод получение всех \"Coffee\"), в классе -  CoffeeDaoImpl");
 		} catch (Exception exceptionObj) {
 			LOG.error(
-					"Ошибка в методе - retrieveCoffee(); (Метод получение всех \"Coffee\"), в классе -  CoffeeDaoImpl");
+					"Ошибка в методе - getAll(); (Метод получение всех \"Coffee\"), в классе -  CoffeeDaoImpl");
 			exceptionObj.printStackTrace();
 		} finally {
 			transObj.commit();

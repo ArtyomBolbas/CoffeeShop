@@ -8,8 +8,8 @@
 
 <h:head>
 <meta charset="UTF-8"></meta>
-<title>Страница редактирования</title>
-<link rel="stylesheet" href="css/order.css"></link>
+	<title>Страница редактирования</title>
+	<link rel="stylesheet" href="css/order.css"></link>
 </h:head>
 
 <h:body>
@@ -18,70 +18,70 @@
 			<legend>
 				<span id="coffeeShop">Coffee shop</span>
 			</legend>
-			<div id="top">
-				<div id="top_left"><h:commandLink action="#{appUrlStore.indexPage}" ><img src="image/coffeeShop.jpg" alt="icon (Coffee Shop)" /></h:commandLink></div>
-				<div id="top_right">
+			<h:panelGroup layout="block" styleClass="top">
+				<h:panelGroup layout="block" styleClass="top_left"><h:commandLink action="#{appUrlStore.indexPage}" ><img src="image/coffeeShop.jpg" alt="icon (Coffee Shop)" /></h:commandLink></h:panelGroup>
+				<h:panelGroup layout="block" styleClass="top_right">
 					<label>Кол-во заказов:
-					<h:outputText value="#{databaseOperations.orderCount}" disabled="disabled" placeholder="0"></h:outputText>
+					<h:outputText value="#{orderEditPageController.count}" disabled="disabled" placeholder="0"></h:outputText>
 					</label>
-				</div>
-			</div>
-			<div id="bottom">
-				<label>Выберети сорт кофе: 
-					<h:selectOneMenu value="#{editCoffeeOrder.coffeeType}">
-	  					    <f:selectItems value="#{editCoffeeOrder.coffeeTypeMap}"/>
-	    					<f:ajax listener="#{editCoffeeOrder.coffeeTypeChanged}" render="totalCostValue"/>
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="bottom">
+				<h:outputLabel>Выберети сорт кофе: 
+					<h:selectOneMenu value="#{orderEditPageController.selectedCoffee}" converter="coffeeConverter">
+	  					    <f:selectItems value="#{orderEditPageController.coffeeList}"/>
+	    					<f:ajax listener="#{orderEditPageController.updateTotalCost}" render="totalCostValue"/>
 					</h:selectOneMenu> 
-				</label>				
+				</h:outputLabel>				
 				<br></br> <br></br>
 				 <fieldset>
 					 <legend>
-						<span id="coffeeShop">ВНИМАНИЕ</span>
+						<h:panelGroup styleClass="coffeeShop">ВНИМАНИЕ</h:panelGroup>
 					</legend>
-					<label>Вы можете заказать доставку (+5$ к стоимости заказа): 
-						<h:selectOneRadio value="#{editCoffeeOrder.deliveryType}">
-   							<f:selectItems value="#{editCoffeeOrder.coffeeDeliveryMap}"/>
-    						<f:ajax listener="#{editCoffeeOrder.coffeeDeliveryChanged}" render="totalCostValue" />
+					<h:outputLabel>Вы можете заказать доставку (+5$ к стоимости заказа): 
+						<h:selectOneRadio value="#{orderEditPageController.selectedDelivery}" converter="deliveryConverter">
+   							<f:selectItems value="#{orderEditPageController.deliveryList}"/>
+    						<f:ajax listener="#{orderEditPageController.updateTotalCost}" render="totalCostValue" />
 						</h:selectOneRadio> 					
-					</label>
+					</h:outputLabel>
 			 	</fieldset> 
 				<br></br> 
-				<label> Количество (в граммах): 
+				<h:outputLabel> Количество (в граммах): 
 				 	<h:inputText id="weight" value="#{editCoffeeOrder.weight}" validatorMessage="Вес должен быть от 100 до 5000 грамм" >
 			       		 <f:validateLongRange maximum="5000" minimum="100" />
 					</h:inputText> 
 					<h:message for="weight" style="color:red" />
-				</label> 
+				</h:outputLabel> 
 				<br></br> <br></br>
-				<label> Дата: 
+				<h:outputLabel> Дата: 
 					<h:inputText id="orderDate" value="#{editCoffeeOrder.orderDate}" converter="orderDateConverter" converterMessage="Некорректно задана дата">
 					</h:inputText> 
 					<h:message for="orderDate" style="color:red" />
-				</label> 
+				</h:outputLabel> 
 				<br></br><br></br> 
-				<label> Время доставки С: 
+				<h:outputLabel> Время доставки С: 
 					<h:inputText id="startTime" binding="#{startDateComponent}" value="#{editCoffeeOrder.startTime}" converterMessage="Некорректно задано время">
 			    	   <f:convertDateTime type="time" pattern="HH:mm"/>
 					</h:inputText>
-				</label> 
-				<label> По: 
+				</h:outputLabel> 
+				<h:outputLabel> По: 
 					<h:inputText id="endTime" value="#{editCoffeeOrder.endTime}" converterMessage="Некорректно задано время">
 			       		<f:convertDateTime type="time" pattern="HH:mm"/>
 				       	<f:validator validatorId="orderTimeRangeValidator" />
    						<f:attribute name="startDateComponent" value="#{startDateComponent}" />
 					</h:inputText>
-				</label> 
+				</h:outputLabel> 
 					<h:message for="startTime" style="color:red" />
 					<h:message for="endTime" style="color:red" />
 				<br></br>
 				<br></br> 
-				<label>Стоимость заказа: 
+				<h:outputLabel>Стоимость заказа: 
  					<h:outputText id="totalCostValue" value="#{editCoffeeOrder.totalCost}" disabled="disabled" placeholder="0"></h:outputText>
-				</label>
-				<label>$</label>
+				</h:outputLabel>
+				<h:outputLabel>$</h:outputLabel>
 				<br></br> <br></br> 
-					 <h:commandButton value="Обновить заказ" action="#{databaseOperations.updateCoffeeOrderRecord(editCoffeeOrder)}" /> 
-			</div>
+					 <h:commandButton value="Обновить заказ" action="#{orderEditPageController.update(editCoffeeOrder)}" /> 
+			</h:panelGroup>
 		</fieldset>
 	</h:form>
 </h:body>

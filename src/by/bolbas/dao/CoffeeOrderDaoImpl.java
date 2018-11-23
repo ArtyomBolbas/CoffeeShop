@@ -12,12 +12,19 @@ import org.hibernate.Transaction;
 import by.bolbas.entity.CoffeeOrder;
 import by.bolbas.util.HibernateUtil;
 
+/**
+ * Класс "подписавший" интерфейс CoffeeOrderDao
+ *
+ */
 public class CoffeeOrderDaoImpl implements CoffeeOrderDao {
 
 	private static Transaction transObj;
 	private static Session sessionObj = HibernateUtil.getSessionFactory().openSession();
 	private final static Logger LOG = Logger.getLogger(CoffeeOrderDaoImpl.class);
 
+	/* 
+	 * Метод реалиует добавления заказа
+	 */
 	@Override
 	public boolean add(CoffeeOrder order) {
 		try {
@@ -34,6 +41,9 @@ public class CoffeeOrderDaoImpl implements CoffeeOrderDao {
 		return false;
 	}
 
+	/* 
+	 * Метод получения кол-ва заказов
+	 */
 	@Override
 	public Long getCount() {
 		try {
@@ -51,6 +61,9 @@ public class CoffeeOrderDaoImpl implements CoffeeOrderDao {
 		return 0L;
 	}
 
+	/* 
+	 * Метод получения всех заказов
+	 */
 	@Override
 	public List<CoffeeOrder> getAll() {
 		List<CoffeeOrder> allCoffeeOrders = new ArrayList<>();
@@ -70,6 +83,9 @@ public class CoffeeOrderDaoImpl implements CoffeeOrderDao {
 		return allCoffeeOrders;
 	}
 
+	/* 
+	 * Метод получения информации о заказе
+	 */
 	@Override
 	public CoffeeOrder getById(int orderId) {
 		CoffeeOrder particularOrdObj = null;
@@ -79,10 +95,10 @@ public class CoffeeOrderDaoImpl implements CoffeeOrderDao {
 					orderId);
 			particularOrdObj = (CoffeeOrder) queryObj.uniqueResult();
 			LOG.debug(
-					"Запущен метод - getOrderById(); (Метод получния информации о конкретном \"Заказе\"), в классе -  CoffeeOrderDaoImp");
+					"Запущен метод - getOrderById(); (Метод получния информации о \"Заказе\"), в классе -  CoffeeOrderDaoImp");
 		} catch (Exception exceptionObj) {
 			LOG.error(
-					"Ошибка в методе - getOrderById(); (Метод получния информации о конкретном \"Заказе\"), в классе -  CoffeeOrderDaoImp");
+					"Ошибка в методе - getOrderById(); (Метод получния информации о \"Заказе\"), в классе -  CoffeeOrderDaoImp");
 			exceptionObj.printStackTrace();
 		} finally {
 			transObj.commit();
@@ -90,6 +106,9 @@ public class CoffeeOrderDaoImpl implements CoffeeOrderDao {
 		return particularOrdObj;
 	}
 
+	/* 
+	 * Метод обновляет информацию о заказе
+	 */
 	@Override
 	public boolean update(CoffeeOrder order) {
 		try {
@@ -108,6 +127,9 @@ public class CoffeeOrderDaoImpl implements CoffeeOrderDao {
 		return false;
 	}
 
+	/* 
+	 * Метод удаляет информацию о заказе (сам заказ)
+	 */
 	@Override
 	public void delete(CoffeeOrder order) {
 		try {

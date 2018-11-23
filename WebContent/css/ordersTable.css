@@ -1,9 +1,9 @@
-.form {
+form {
 	width: 100%;
 	margin-top: 5%;
 }
 
-#top {
+.top {
 	height: 240px;
 }
 
@@ -14,23 +14,23 @@
 	border-radius: 5px;
 }
 
-#coffeeShop {
+.coffeeShop {
 	font-size: 26px;
 }
 
-#top_left {
+.top_left {
 	float: left;
 	height: 220px;
 	width: 250px;
 }
 
-#top_right {
+.top_right {
 	position: relative;
 	margin-left: 260px;
 	height: 220;
 }
 
-#bottom {
+.bottom {
 	position: relative;
 	top: 0px;
 	left: 0px;

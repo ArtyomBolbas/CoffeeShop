@@ -2,16 +2,12 @@ package by.bolbas.entity;
 
 import java.util.Date;
 
+/*
+ * Класс для хранения информации о заказе
+ */
 public class CoffeeOrder implements java.io.Serializable {
-	/*
-	 * Класс CoffeeOrder. Отвечает за создание новой сущности "CoffeeOrder".
-	 */
 
-	////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/*
-	 * Поля, свойства необходииые CoffeeOrder
-	 */
-	////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 	private static final long serialVersionUID = -1540437138823134510L;
 
 	private Integer id;
@@ -23,12 +19,6 @@ public class CoffeeOrder implements java.io.Serializable {
 	private Coffee coffee;
 	private Delivery delivery;
 
-	////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-	/*
-	 * Геттеры, сеттеры
-	 */
-	////////////////////////////////////////////////////////////////////////////////////////////////////////
 	public Integer getId() {
 		return id;
 	}

@@ -2,6 +2,10 @@ package by.bolbas.entity;
 
 import java.io.Serializable;
 
+/**
+ * Класс для хранения информации о кофе
+ *
+ */
 public class Coffee implements Serializable {
 	private static final long serialVersionUID = 8498181162151665290L;
 	
@@ -72,7 +76,7 @@ public class Coffee implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Coffee [id=" + id + ", name=" + name + ", price=" + price + "]";
+		return  name + " " + price + "$";
 	}
 
 	

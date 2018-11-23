@@ -23,8 +23,10 @@
 		<property name="totalCost" type="java.lang.Integer">
 			<column name="total_cost" />
 		</property>
-		<one-to-one name="coffee" class="by.bolbas.entity.Coffee"></one-to-one>
-		<one-to-one name="delivery"
-			class="by.bolbas.entity.Delivery"></one-to-one>
+		<many-to-one name="coffee" class="by.bolbas.entity.Coffee"
+			column="coffee_id" unique="true" not-null="true" />
+		<many-to-one name="delivery"
+			class="by.bolbas.entity.Delivery" column="delivery_id" unique="true"
+			not-null="true" />
 	</class>
 </hibernate-mapping>

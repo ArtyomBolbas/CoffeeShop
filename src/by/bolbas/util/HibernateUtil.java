@@ -4,23 +4,16 @@ import org.hibernate.SessionFactory;
 
 import org.hibernate.cfg.Configuration;
 
-public class HibernateUtil {
-	/*
-	 * Класс HibernateUtil. Отвечает за создание, получение SessionFactory;
-	 */
+/*
+ * Класс HibernateUtil. Отвечает за создание, получение SessionFactory;
+ */
 
-	////////////////////////////////////////////////////////////////////////////////////////////////////////
-	/*
-	 * Поля, свойства необходииые HibernateUtil 
-	 */
-	////////////////////////////////////////////////////////////////////////////////////////////////////////
+public class HibernateUtil {
+
 	private static SessionFactory sessionFactoryObj = buildSessionFactoryObj();
 
-	////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	
 	/*
-	 * Создаем объект SessionFactory 
+	 * Создаем объект SessionFactory
 	 */
 	@SuppressWarnings("deprecation")
 	public static SessionFactory buildSessionFactoryObj() {
@@ -31,11 +24,7 @@ public class HibernateUtil {
 		}
 		return sessionFactoryObj;
 	}
-	////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	/*
-	 * Геттеры, сеттеры
-	 */
+
 	public static SessionFactory getSessionFactory() {
 		return sessionFactoryObj;
 	}

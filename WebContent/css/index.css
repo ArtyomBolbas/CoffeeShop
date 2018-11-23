@@ -1,4 +1,4 @@
-.form {
+form {
     margin-top: 10%;
     width: 100%;
 }
@@ -10,32 +10,33 @@ fieldset {
     border-radius: 5px;
 }
 
-#coffeeShop {
+.coffeeShop {
     font-size: 26px;
 }
 
-#top {
+.top {
     position: relative;
 }
 
-#top_left {
+.top_left {
     float: left;
     height: 250px;
     width: 302px;
 }
 
-#top_right {
+.top_right {
     position: relative;
-    margin-left: 302px;
+    margin-left: 0px;
 }
 
-#bottom {
+.bottom {
+	display: block;
     position: relative;
     top: 290px;
     left: 0px;
 }
 
-#bottom_left {
+.bottom_left {
     border-radius: 5px;
     border: 1px solid #000000;
     padding-top: 5px;
@@ -46,7 +47,7 @@ fieldset {
     left: 35px;
 }
 
-#bottom_right {
+.bottom_right {
     border-radius: 5px;
     border: 1px solid #000000;
     padding-top: 5px;

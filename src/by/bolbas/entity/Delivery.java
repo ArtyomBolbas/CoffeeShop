@@ -2,6 +2,10 @@ package by.bolbas.entity;
 
 import java.io.Serializable;
 
+/**
+ * Класс для хранения информации о доставке
+ *
+ */
 public class Delivery implements Serializable {
 	private static final long serialVersionUID = -5791823115064186423L;
 	
@@ -72,7 +76,7 @@ public class Delivery implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Delivery [id=" + id + ", type=" + type + ", price=" + price + "]";
+		return type + " " + price + "$";
 	}
 	
 }

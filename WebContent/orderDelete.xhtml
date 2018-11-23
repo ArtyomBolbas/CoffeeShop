@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
+	xmlns:f="http://java.sun.com/jsf/core">
 
 <head>
 <meta charset="UTF-8"></meta>
@@ -18,69 +18,80 @@
 			<legend>
 				<span id="coffeeShop">Coffee shop</span>
 			</legend>
-			<div id="top">
-				<div id="top_left"><h:commandLink action="#{appUrlStore.indexPage}" ><img src="image/coffeeShop.jpg" alt="icon (Coffee Shop)" /></h:commandLink></div>
-				<div id="top_right">
-					<label>Кол-во заказов:
-					<h:outputText value="#{databaseOperations.orderCount}" disabled="disabled"></h:outputText>
+			<h:panelGroup layout="block" styleClass="top">
+				<h:panelGroup layout="block" styleClass="top_left">
+					<h:commandLink action="#{appUrlStore.indexPage}">
+						<img src="image/coffeeShop.jpg" alt="icon (Coffee Shop)" />
+					</h:commandLink>
+				</h:panelGroup>
+				<h:panelGroup layout="block" styleClass="top_right">
+					<label>Кол-во заказов: <h:outputText
+							value="#{orderDeletePageController.count}" disabled="disabled" />
 					</label>
-				</div>
-			</div>
-			<div id="bottom">
-				<label>Выберети сорт кофе: 
-				   	<h:selectOneMenu value="#{deleteCoffeeOrder.totalCost}" onchange="submit()"
-						valueChangeListener="#{deleteCoffeeOrder.coffeeTypeChanged}" >			
-   				  		<h:outputText value="#{deleteCoffeeOrder.coffeeType}" disabled="disabled"></h:outputText>
-   					</h:selectOneMenu>   
-				</label>				
-				<br></br> <br></br>
-				 <fieldset>
-					 <legend>
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="bottom">
+				<h:outputLabel>Сорт кофе:
+				<h:outputText value="#{deleteCoffeeOrder.coffee}"
+						disabled="disabled" />
+				</h:outputLabel>
+				<br></br>
+				<br></br>
+				<fieldset>
+					<legend>
 						<span id="coffeeShop">ВНИМАНИЕ</span>
 					</legend>
-					<label>Вы можете заказать доставку (+5$ к стоимости заказа): 
-						<h:selectOneRadio value="#{deleteCoffeeOrder.deliveryType}" disabled="disabled">
-   							<br></br>
-   							<h:outputText value="#{deleteCoffeeOrder.deliveryType}" disabled="disabled"></h:outputText>	
-						</h:selectOneRadio> 
-					</label>
-			 	</fieldset> 
-				<br></br> 
-				<label> Количество (в граммах): 
-				 	<h:outputText id="weight" value="#{deleteCoffeeOrder.weight}" validatorMessage="Вес должен быть от 100 до 5000 грамм" disabled="disabled">
-					</h:outputText> 
-					<h:message for="weight" style="color:red" />
-				</label> 
-				<br></br> <br></br>
-				<label> Дата: 
-					<h:outputText id="orderDate" value="#{deleteCoffeeOrder.orderDate}" converter="orderDateConverter" converterMessage="Некорректно задана дата" disabled="disabled">
-					</h:outputText> 
-					<h:message for="orderDate" style="color:red" />
-				</label> 
-				<br></br><br></br> 
-				<label> Время доставки С: 
-					<h:outputText id="startTime" binding="#{startDateComponent}" value="#{deleteCoffeeOrder.startTime}" converterMessage="Некорректно задано время" disabled="disabled">
-			    	   <f:convertDateTime type="time" pattern="HH:mm"/>
-					</h:outputText>
-				</label> 
-				<label> По: 
-					<h:outputText id="endTime" value="#{deleteCoffeeOrder.endTime}" converterMessage="Некорректно задано время" disabled="disabled">
-			       		<f:convertDateTime type="time" pattern="HH:mm"/>
-   						<f:attribute name="startDateComponent" value="#{startDateComponent}" />
-					</h:outputText>
-				</label> 
-					<h:message for="startTime" style="color:red" />
-					<h:message for="endTime" style="color:red" />
+					<h:outputLabel>Доставка: 
+						<h:outputText value="#{deleteCoffeeOrder.delivery}"
+							disabled="disabled" />
+					</h:outputLabel>
+				</fieldset>
 				<br></br>
-				<br></br> 
-				<label>Стоимость заказа: 
- 					<h:outputText value="#{deleteCoffeeOrder.totalCost}" disabled="disabled" placeholder="0"></h:outputText>
-				</label>
-				<label>$</label>
-				<br></br> <br></br> 
-					 <h:commandButton value="Удалить" action="#{databaseOperations.deleteCoffeeOrderInDb(deleteCoffeeOrder.id)}" /> 
-			</div>
+				<h:outputLabel> Количество (в граммах): 
+				 	<h:outputText id="weight" value="#{deleteCoffeeOrder.weight}"
+						disabled="disabled">
+					</h:outputText>
+					<h:message for="weight" style="color:red" />
+				</h:outputLabel>
+				<br></br>
+				<br></br>
+				<h:outputLabel> Дата: 
+					<h:outputText id="orderDate" value="#{deleteCoffeeOrder.orderDate}"
+						disabled="disabled">
+					</h:outputText>
+					<h:message for="orderDate" style="color:red" />
+				</h:outputLabel>
+				<br></br>
+				<br></br>
+				<h:outputLabel> Время доставки С: 
+					<h:outputText id="startTime" binding="#{startDateComponent}"
+						value="#{deleteCoffeeOrder.startTime}" disabled="disabled">
+						<f:convertDateTime type="time" pattern="HH:mm" />
+					</h:outputText>
+				</h:outputLabel>
+				<h:outputLabel> По: 
+					<h:outputText id="endTime" value="#{deleteCoffeeOrder.endTime}"
+						disabled="disabled">
+						<f:convertDateTime type="time" pattern="HH:mm" />
+						<f:attribute name="startDateComponent"
+							value="#{startDateComponent}" />
+					</h:outputText>
+				</h:outputLabel>
+				<h:message for="startTime" style="color:red" />
+				<h:message for="endTime" style="color:red" />
+				<br></br>
+				<br></br>
+				<h:outputLabel>Стоимость заказа: 
+ 					<h:outputText value="#{deleteCoffeeOrder.totalCost}"
+						disabled="disabled" placeholder="0"></h:outputText>
+				</h:outputLabel>
+				<h:outputLabel>$</h:outputLabel>
+				<br></br>
+				<br></br>
+				<h:commandButton value="Удалить"
+					action="#{orderDeletePageController.delete(deleteCoffeeOrder)}" />
+			</h:panelGroup>
 		</fieldset>
-	</h:form>				
+	</h:form>
 </body>
 </html>

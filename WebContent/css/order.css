@@ -3,9 +3,6 @@
 	margin-top: 5%;
 }
 
-#top {
-	height: 240px;
-}
 
 #fieldset_main {
 	height: 600px;
@@ -14,24 +11,28 @@
 	border-radius: 5px;
 }
 
-#coffeeShop {
+.coffeeShop {
 	font-size: 26px;
 }
 
-#top_left {
-	float: left;
-	height: 220px;
-	width: 250px;
+.top {
+    position: relative;
+     height: 250px;
 }
 
-#top_right {
-	position: relative;
-	margin-left: 260px;
-	height: 220;
+.top_left {
+    float: left;
+    height: 250px;
+    width: 302px;
 }
 
-#bottom {
-	position: relative;
-	top: 0px;
-	left: 0px;
+.top_right {
+    position: relative;
+    margin-left: 0px;
+}
+
+.bottom {
+    position: relative;
+    top: 15px;
+    left: 0px;
 }

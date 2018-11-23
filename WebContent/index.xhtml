@@ -5,40 +5,40 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html">
 
-<head>
-<meta charset="UTF-8"></meta>
+<h:head>
 	<title>Главная</title>
 	<link rel="stylesheet" href="css/index.css"></link>
-</head>
+</h:head>
 
-<body>
+ <h:body>
 	<h:form styleClass="form">
 		<fieldset>
 			<legend>
-				<span id="coffeeShop">Coffee shop</span>
+				<h:outputLabel styleClass="coffeeShop">Coffee shop</h:outputLabel>
 			</legend>
-			<div id="top">
-				<div id="top_left"><img src="image/coffeeShop.jpg" alt="icon (Coffee Shop)" title="Главная страница"/></div>
-				<div id="top_right">
-					<label for="orders">Кол-во заказов:</label> 
-					<h:outputText value="#{indexPageController.count}" disabled="disabled" placeholder="0"></h:outputText>									
-				</div>
-			</div>
- 			<h:outputText rendered="#{not empty createdCoffeeOrderMessage}" value="#{createdCoffeeOrderMessage}" styleClass="successText" />			
-			<div id="bottom">
+			<h:panelGroup styleClass="top">
+				<h:panelGroup styleClass="top_left"><img src="image/coffeeShop.jpg" alt="icon (Coffee Shop)" title="Главная страница"/></h:panelGroup>
+				<h:panelGroup styleClass="top_right">
+					<h:outputLabel>Кол-во заказов:</h:outputLabel> 
+					<h:outputText value="#{indexPageController.count}" disabled="disabled"></h:outputText>		
+					<br></br>							
+					<h:outputText rendered="#{not empty createdCoffeeOrderMessage}" value="#{createdCoffeeOrderMessage}" styleClass="successText" />
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup  styleClass="bottom">
 				<h:commandLink action="#{appUrlStore.orderPage}" >
-					<div id="bottom_left">
-						<span class="button">Заказать</span>
-					</div>
+					<h:panelGroup styleClass="bottom_left">
+						<h:panelGroup class="button">Заказать</h:panelGroup>
+					</h:panelGroup>
 				</h:commandLink>
 				<h:commandLink action="#{appUrlStore.ordersTablePage}" >
-					<div id="bottom_right">
-						<span class="button">Редактировать</span>
-					</div>
+					<h:panelGroup styleClass="bottom_right">
+						<h:panelGroup class="button">Редактировать</h:panelGroup>
+					</h:panelGroup>
 				</h:commandLink>
-			</div>
+			</h:panelGroup>
 		</fieldset>
 	</h:form>
-</body>
+</h:body>
 
 </html>

@@ -1,7 +1,6 @@
 package by.bolbas.controller;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -20,30 +19,26 @@ import by.bolbas.entity.CoffeeOrder;
 import by.bolbas.entity.Delivery;
 
 /**
- * Класс контроллер для оформления заказа
+ * Класс контроллер для изменений информации в заказе
  *
  */
 @ManagedBean
 @ViewScoped
-public class OrderPageController implements Serializable {
+public class OrderEditPageController implements Serializable {
 
 	private static final long serialVersionUID = 5021930446584860266L;
 	private CoffeeOrderDao dao;
 	private CoffeeDao coffeeDao;
 	private DeliveryDao deliveryDao;
-	
+
 	private Long count;
 	private List<Coffee> coffeeList;
 	private Coffee selectedCoffee;
-	
+
 	private List<Delivery> deliveryList;
 	private Delivery selectedDelivery;
-	
-	private Integer weight;
-	private Date date;
-	private Date startTime;
-	private Date endTime;
-	private Integer totalCost;
+
+	private CoffeeOrder order;
 
 	/**
 	 * Метод получает начальные данные для отображения на странице
@@ -56,12 +51,27 @@ public class OrderPageController implements Serializable {
 		count = dao.getCount();
 		coffeeList = coffeeDao.getAll();
 		deliveryList = deliveryDao.getAll();
-		if (!coffeeList.isEmpty()) {
-			selectedCoffee = coffeeList.get(0);
+
+		order = (CoffeeOrder) FacesContext.getCurrentInstance().getExternalContext().getSessionMap()
+				.get("editCoffeeOrder");
+		selectedCoffee = order.getCoffee();
+		selectedDelivery = order.getDelivery();
+	}
+
+	/**
+	 * Метод предназнаен для обновления информации в заказе
+	 * Перенаправляет на стартовую страницу
+	 */
+	public String update(CoffeeOrder order) {
+		if (dao.update(order)) {
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("createdCoffeeOrderMessage",
+					"Заказ обновлен");
+		} else {
+			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("createdCoffeeOrderMessage",
+					"Заказ не был обновлен");
 		}
-		if (!deliveryList.isEmpty()) {
-			selectedDelivery = deliveryList.get(0);
-		}
+
+		return "index";
 	}
 
 	/**
@@ -69,34 +79,9 @@ public class OrderPageController implements Serializable {
 	 */
 	public void updateTotalCost() {
 		if (selectedCoffee == null || selectedDelivery == null) {
-			totalCost = 0;
+			order.setTotalCost(0);
 		}
-		totalCost = selectedCoffee.getPrice() + selectedDelivery.getPrice();
-	}
-	
-	/**
-	 * Метод предназначен для добавления заказа
-	 * Перенаправляет на главную страницу
-	 */
-	public String addOrder() {
-		CoffeeOrder coffeeOrder = new CoffeeOrder();
-		coffeeOrder.setCoffee(selectedCoffee);
-		coffeeOrder.setDelivery(selectedDelivery);
-		coffeeOrder.setWeight(weight);
-		coffeeOrder.setOrderDate(date);
-		coffeeOrder.setStartTime(startTime);
-		coffeeOrder.setEndTime(endTime);
-		coffeeOrder.setTotalCost(totalCost);
-		
-		if (dao.add(coffeeOrder)) {
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("createdCoffeeOrderMessage",
-					"Заказ принят в обработку");
-		} else {
-			FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("createdCoffeeOrderMessage",
-					"Заказ не был принят в обработку");			
-		}
-		
-		return "index";
+		order.setTotalCost(selectedCoffee.getPrice() + selectedDelivery.getPrice());
 	}
 
 	public Long getCount() {
@@ -139,46 +124,5 @@ public class OrderPageController implements Serializable {
 		this.selectedDelivery = selectedDelivery;
 	}
 
-	public Integer getWeight() {
-		return weight;
-	}
-
-	public void setWeight(Integer weight) {
-		this.weight = weight;
-	}
-
-	public Date getDate() {
-		return date;
-	}
-
-	public void setDate(Date date) {
-		this.date = date;
-	}
-
-	public Date getStartTime() {
-		return startTime;
-	}
-
-	public void setStartTime(Date startTime) {
-		this.startTime = startTime;
-	}
-
-	public Date getEndTime() {
-		return endTime;
-	}
-
-	public void setEndTime(Date endTime) {
-		this.endTime = endTime;
-	}
-
-	public Integer getTotalCost() {
-		return totalCost;
-	}
-
-	public void setTotalCost(Integer totalCost) {
-		this.totalCost = totalCost;
-	}
-	
-	
 
 }
